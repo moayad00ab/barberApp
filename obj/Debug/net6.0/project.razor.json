@@ -16298,6 +16298,21 @@
   "RootNamespace": "barber",
   "Documents": [
     {
+      "FilePath": "/home/moayad/Desktop/barber/ViewModels/Roles/ListRoles.cshtml",
+      "TargetPath": "ViewModels\\Roles\\ListRoles.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "/home/moayad/Desktop/barber/Views/Roles/EditRole.cshtml",
+      "TargetPath": "Views\\Roles\\EditRole.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "/home/moayad/Desktop/barber/Views/Roles/CreateRole.cshtml",
+      "TargetPath": "Views\\Roles\\CreateRole.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "/home/moayad/Desktop/barber/Views/Shared/_Layout.cshtml",
       "TargetPath": "Views\\Shared\\_Layout.cshtml",
       "FileKind": "mvc"
@@ -16328,6 +16343,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "/home/moayad/Desktop/barber/Views/Roles/ListRoles.cshtml",
+      "TargetPath": "Views\\Roles\\ListRoles.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "/home/moayad/Desktop/barber/Views/account/listUsers.cshtml",
       "TargetPath": "Views\\account\\listUsers.cshtml",
       "FileKind": "mvc"
@@ -16343,6 +16363,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "/home/moayad/Desktop/barber/ViewModels/Roles/CreateRole.cshtml",
+      "TargetPath": "ViewModels\\Roles\\CreateRole.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "/home/moayad/Desktop/barber/Areas/Identity/Pages/_ViewStart.cshtml",
       "TargetPath": "Areas\\Identity\\Pages\\_ViewStart.cshtml",
       "FileKind": "mvc"
@@ -16350,6 +16375,11 @@
     {
       "FilePath": "/home/moayad/Desktop/barber/Views/Shared/_ValidationScriptsPartial.cshtml",
       "TargetPath": "Views\\Shared\\_ValidationScriptsPartial.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "/home/moayad/Desktop/barber/ViewModels/Roles/EditRole.cshtml",
+      "TargetPath": "ViewModels\\Roles\\EditRole.cshtml",
       "FileKind": "mvc"
     },
     {

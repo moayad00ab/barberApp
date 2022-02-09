@@ -43,6 +43,18 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9Qcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
+[/home/moayad/Desktop/barber/Views/Roles/CreateRole.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvUm9sZXMvQ3JlYXRlUm9sZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/moayad/Desktop/barber/Views/Roles/EditRole.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvUm9sZXMvRWRpdFJvbGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/moayad/Desktop/barber/Views/Roles/ListRoles.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvUm9sZXMvTGlzdFJvbGVzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [/home/moayad/Desktop/barber/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL0Vycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 

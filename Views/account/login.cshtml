@@ -1,0 +1,36 @@
+﻿@model barber.ViewModels.LoginViewModel
+
+
+@{
+    ViewBag.Title = "User Login";
+}
+
+<div class="row justify-content-center">
+    <div class="col-md-4">
+        <form method="post">
+            <br />
+            <div class="form-group">
+                <label asp-for="UserName"></label>
+                <input asp-for="UserName" class="form-control" />
+                <span asp-validation-for="UserName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Password"></label>
+                <input asp-for="Password" class="form-control" />
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+            <div asp-validation-summary="All" class="text-danger"></div>
+
+            <div class="form-group">
+                <div class="checkbox">
+                    <label asp-for="RememberMe">
+                        <input asp-for="RememberMe" />
+                        @Html.DisplayNameFor(m => m.RememberMe)
+                    </label>
+                </div>
+            </div>
+            <br />
+            <center><button type="submit" class="btn btn-primary">Login</button></center>
+        </form>
+    </div>
+</div>
