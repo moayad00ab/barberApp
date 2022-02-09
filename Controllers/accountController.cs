@@ -95,19 +95,12 @@ namespace barber.Controllers;
 
             if (user == null)
             {
-                ViewBag.ErrorMessage = $"User with Id = {model.Id} cannot be found";
-                return View("NotFound");
+                System.Security.Claims.ClaimsPrincipal currentUser = this.User;
+                model.Id = _userManager.GetUserId(User); // Get user id:
             }
-            else
-            {
                 user.Email = model.Email;
                 user.UserName = model.UserName;
                 user.PhoneNumber = model.PhoneNumber;
-                if (!string.IsNullOrWhiteSpace(model.oldPass) || !string.IsNullOrWhiteSpace(model.Password))
-                {
-                    await _userManager.ChangePasswordAsync(user, model.oldPass, model.Password);
-
-                }
 
                 var result = await _userManager.UpdateAsync(user);
 
@@ -123,7 +116,7 @@ namespace barber.Controllers;
                 }
 
                 return View(model);
-            }
+            
         }
         // Action for returning the edit page to the user
         [HttpGet]
