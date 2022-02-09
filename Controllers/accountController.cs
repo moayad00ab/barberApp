@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using barber;
 using barber.ViewModels;
 using barber.Data;
-namespace MyBarber.Controllers;
+namespace barber.Controllers;
 
     public class accountController : Controller
     {
@@ -43,7 +43,7 @@ namespace MyBarber.Controllers;
                 var user = new users { UserName = model.UserName, Email = model.Email, PhoneNumber = model.PhoneNumber };
                 var result = await _userManager.CreateAsync(user, model.Password);
 
-                //await _userManager.AddToRoleAsync(user, "Admin");
+                await _userManager.AddToRoleAsync(user, "Admin");
                 //check if the user created succsfuly 
                 if (result.Succeeded)
                 {
