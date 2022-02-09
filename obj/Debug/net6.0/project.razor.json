@@ -16318,13 +16318,28 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "/home/moayad/Desktop/barber/Views/account/Register.cshtml",
+      "TargetPath": "Views\\account\\Register.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "/home/moayad/Desktop/barber/Views/_ViewImports.cshtml",
       "TargetPath": "Views\\_ViewImports.cshtml",
       "FileKind": "mvc"
     },
     {
+      "FilePath": "/home/moayad/Desktop/barber/Views/account/listUsers.cshtml",
+      "TargetPath": "Views\\account\\listUsers.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "/home/moayad/Desktop/barber/Views/Home/Index.cshtml",
       "TargetPath": "Views\\Home\\Index.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "/home/moayad/Desktop/barber/Views/account/Edit.cshtml",
+      "TargetPath": "Views\\account\\Edit.cshtml",
       "FileKind": "mvc"
     },
     {
@@ -16340,6 +16355,11 @@
     {
       "FilePath": "/home/moayad/Desktop/barber/Views/Shared/Error.cshtml",
       "TargetPath": "Views\\Shared\\Error.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "/home/moayad/Desktop/barber/Views/account/login.cshtml",
+      "TargetPath": "Views\\account\\login.cshtml",
       "FileKind": "mvc"
     }
   ],
