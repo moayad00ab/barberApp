@@ -59,7 +59,59 @@
                 </div>
             </center>
             <br />
-            <center><button type="submit" class="btn btn-primary">Sign Up</button></center>
+       
+
+            <p class="muted">What type of user are you?</p>
+            <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+  <input type="radio" class="btn-check" name="userType" id="btnradio1"  checked="true">
+  <label class="btn btn-outline-primary" for="btnradio1">Customer</label>
+  <input type="radio" class="btn-check"     name="userType" id="barber" value="barber" >
+  <label class="btn btn-outline-primary" for="barber">Barber</label>
+  <input type="radio" class="btn-check"      name="userType" id="barberShop" value="barberShop" >
+  <label class="btn btn-outline-primary" for="barberShop">Barber shop owner</label>
+</div>
+<br><br>
+
+
+          
+            <center><button type="submit" class="btn btn-primary"  onclick="userType();" >Sign Up</button></center>
+<br><br>
+
+<input type="hidden" id="results" asp-for="userType">
+            
+       
         </form>
     </div>
 </div>
+
+@section Scripts {
+
+<script>
+    
+
+  
+
+    function userType() {
+        
+
+        var userType = document.forms[0];
+        var type;
+        var i;
+
+
+        for(i=0; i <userType.length; i++){
+
+            if(userType[i].checked){
+                type = type[i].value + "";
+            }
+        }
+
+    document.getElementById("results").value = type;
+  
+    }
+    
+</script>
+
+
+}
+

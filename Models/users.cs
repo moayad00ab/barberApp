@@ -15,7 +15,7 @@ namespace barber;
         public string shopName { get; set; }
         public string cardNum { get; set; }
         public string cardHold { get; set; }
-        public string barbersShop { get; set; }
+        public string barberShop { get; set; }
         public string district { get; set; }
         public string street { get; set; }
         public int postelCode { get; set; }

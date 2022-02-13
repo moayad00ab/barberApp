@@ -43,7 +43,14 @@ namespace barber.Controllers;
                 var user = new users { UserName = model.UserName, Email = model.Email, PhoneNumber = model.PhoneNumber };
                 var result = await _userManager.CreateAsync(user, model.Password);
 
-                await _userManager.AddToRoleAsync(user, "Admin");
+                    await _userManager.AddToRoleAsync(user, "barber");
+
+                    return View("Edit");
+                    await _userManager.AddToRoleAsync(user, "barberShop");
+                    await _userManager.AddToRoleAsync(user, "customer");
+
+                
+                
                 //check if the user created succsfuly 
                 if (result.Succeeded)
                 {
@@ -193,6 +200,20 @@ return View(editView);
         {
             var users = _userManager.Users;
             return View(users);
+        }
+
+        [HttpGet]
+        public IActionResult settings()
+        {
+            var users = _userManager.Users;
+            return View(settings);
+        }
+
+        [HttpGet]
+        public IActionResult customerProfile()
+        {
+            var users = _userManager.Users;
+            return View(customerProfile);
         }
 
     }
