@@ -28,12 +28,9 @@ namespace barber.Migrations
                 columns: table => new
                 {
                     Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    cvv = table.Column<int>(type: "int", nullable: false),
                     fName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     lName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     shopName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    cardNum = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    cardHold = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     barbersShop = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     district = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     street = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -42,7 +39,6 @@ namespace barber.Migrations
                     rating = table.Column<float>(type: "real", nullable: false),
                     sWorkTime = table.Column<DateTime>(type: "datetime2", nullable: false),
                     eWorkTime = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    daysWork = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     NormalizedUserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     Email = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
@@ -235,14 +231,14 @@ namespace barber.Migrations
                 name: "services",
                 columns: table => new
                 {
-                    serviceID = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     description = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     price = table.Column<float>(type: "real", nullable: false),
                     UserId = table.Column<string>(type: "nvarchar(450)", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_services", x => x.serviceID);
+                    table.PrimaryKey("PK_services", x => x.Id);
                     table.ForeignKey(
                         name: "FK_services_AspNetUsers_UserId",
                         column: x => x.UserId,

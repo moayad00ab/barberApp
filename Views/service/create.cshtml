@@ -1,0 +1,21 @@
+@model barber.Models.services
+@{
+    ViewBag.Title = "Create Service";
+}
+<h1>Create service</h1>
+<div class="row justify-content-center">
+    <div class="col-md-4">
+        <form method="post">
+                <div class="form-group">
+                    <label asp-for="description"></label>
+                    <input asp-for="description" class="form-control" />
+                    <span asp-validation-for="description" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="price"></label>
+                    <input asp-for="price" class="form-control" />
+                    <span asp-validation-for="price" class="text-danger"></span>
+           <button type="submit" class="btn btn-primary">Create service</button>
+        </form>
+    </div>
+</div>

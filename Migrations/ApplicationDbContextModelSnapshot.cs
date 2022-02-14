@@ -22,7 +22,7 @@ namespace barber.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
-            modelBuilder.Entity("barber.appointment", b =>
+            modelBuilder.Entity("barber.Models.appointment", b =>
                 {
                     b.Property<string>("appointID")
                         .ValueGeneratedOnAdd()
@@ -56,7 +56,7 @@ namespace barber.Migrations
                     b.ToTable("appointment");
                 });
 
-            modelBuilder.Entity("barber.files", b =>
+            modelBuilder.Entity("barber.Models.files", b =>
                 {
                     b.Property<int>("file_id")
                         .ValueGeneratedOnAdd()
@@ -80,7 +80,7 @@ namespace barber.Migrations
                     b.ToTable("files");
                 });
 
-            modelBuilder.Entity("barber.offers", b =>
+            modelBuilder.Entity("barber.Models.offers", b =>
                 {
                     b.Property<string>("offerID")
                         .ValueGeneratedOnAdd()
@@ -102,9 +102,9 @@ namespace barber.Migrations
                     b.ToTable("offers");
                 });
 
-            modelBuilder.Entity("barber.services", b =>
+            modelBuilder.Entity("barber.Models.services", b =>
                 {
-                    b.Property<string>("serviceID")
+                    b.Property<string>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("nvarchar(450)");
 
@@ -117,7 +117,7 @@ namespace barber.Migrations
                     b.Property<float>("price")
                         .HasColumnType("real");
 
-                    b.HasKey("serviceID");
+                    b.HasKey("Id");
 
                     b.HasIndex("UserId");
 
@@ -179,20 +179,8 @@ namespace barber.Migrations
                     b.Property<string>("barbersShop")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("cardHold")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("cardNum")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("city")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("cvv")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("daysWork")
-                        .HasColumnType("datetime2");
 
                     b.Property<string>("district")
                         .HasColumnType("nvarchar(max)");
@@ -371,7 +359,7 @@ namespace barber.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("barber.appointment", b =>
+            modelBuilder.Entity("barber.Models.appointment", b =>
                 {
                     b.HasOne("barber.users", "User")
                         .WithMany()
@@ -380,7 +368,7 @@ namespace barber.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("barber.files", b =>
+            modelBuilder.Entity("barber.Models.files", b =>
                 {
                     b.HasOne("barber.users", "User")
                         .WithMany()
@@ -389,7 +377,7 @@ namespace barber.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("barber.offers", b =>
+            modelBuilder.Entity("barber.Models.offers", b =>
                 {
                     b.HasOne("barber.users", "User")
                         .WithMany()
@@ -398,7 +386,7 @@ namespace barber.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("barber.services", b =>
+            modelBuilder.Entity("barber.Models.services", b =>
                 {
                     b.HasOne("barber.users", "User")
                         .WithMany()

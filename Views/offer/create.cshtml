@@ -1,0 +1,16 @@
+@model barber.Models.offers
+@{
+    ViewBag.Title = "Create offer";
+}
+<h1>Create offer</h1>
+<div class="row justify-content-center">
+    <div class="col-md-4">
+        <form method="post">
+            <div class="form-group">
+                <label asp-for="description"></label>
+                <input asp-for="description" class="form-control" />
+                <span asp-validation-for="description" class="text-danger"></span>
+            </div>
+            <button type="submit" class="btn btn-primary">Create offer</button>
+        </form>
+    </div>

@@ -13,21 +13,33 @@ namespace barber.ViewModels;
         [Display(Name = "ID: ")]
         public string Id { get; set; }
         [Display(Name = "Phone Number: ")]
-        public String PhoneNumber { get; set; }
+        public string PhoneNumber { get; set; }
         [Display(Name = "Email Address: ")]
         [EmailAddress]
          [Required (ErrorMessage = "Email Address is required")]
-        public String Email { get; set; }
+        public string Email { get; set; }
         [Display(Name = "Username: ")]
-        public String UserName { get; set; }
-        [Display(Name = "Old Password: ")]
-        [DataType(DataType.Password)]
-        public String oldPass { get; set; }
-        [Display(Name = "New Password: ")]
-        [DataType(DataType.Password)]
-        public String Password { get; set; }
-        [DataType(DataType.Password)]
-        [Display(Name = "Confirm New Password: ")]
-        [Compare("Password", ErrorMessage = "Password and confirmation password do not match.")]
-        public String PConfirmation { get; set; }
+        public string UserName { get; set; }
+        [Display(Name = "First Name: ")]
+         public string fName { get; set; }
+         [Display(Name = "Last Name: ")]
+        public string lName { get; set; }
+        [Display(Name = "Barber shop name: ")]
+        public string shopName { get; set; }
+        [Display(Name = "Your barber shop: ")]
+        public string barbersShop { get; set; }
+        [Display(Name = "District: ")]
+        public string district { get; set; }
+        [Display(Name = "Street: ")]
+        public string street { get; set; }
+        [Display(Name = "Postel code: ")]
+        public int postelCode { get; set; }
+        [Display(Name = "City: ")]
+        public string city { get; set; }
+        public float rating { get; set; }
+        [Display(Name = "Start working time: ")]
+        public TimeOnly sWorkTime { get; set; }
+        [Display(Name = "Username: ")]
+        public TimeOnly eWorkTime { get; set; }
+        public DateOnly daysWork { get; set; }
     }

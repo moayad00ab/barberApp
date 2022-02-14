@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Reflection.Metadata;
 using Microsoft.AspNetCore.Http;
 
-namespace barber;
+namespace barber.Models;
 
     public class files
     {
