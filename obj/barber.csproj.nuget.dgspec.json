@@ -1,25 +1,27 @@
 {
   "format": 1,
   "restore": {
-    "/home/moayad/Desktop/barber/barber.csproj": {}
+    "C:\\Users\\oab28\\Desktop\\barberApp\\barber.csproj": {}
   },
   "projects": {
-    "/home/moayad/Desktop/barber/barber.csproj": {
+    "C:\\Users\\oab28\\Desktop\\barberApp\\barber.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/moayad/Desktop/barber/barber.csproj",
+        "projectUniqueName": "C:\\Users\\oab28\\Desktop\\barberApp\\barber.csproj",
         "projectName": "barber",
-        "projectPath": "/home/moayad/Desktop/barber/barber.csproj",
-        "packagesPath": "/home/moayad/.nuget/packages/",
-        "outputPath": "/home/moayad/Desktop/barber/obj/",
+        "projectPath": "C:\\Users\\oab28\\Desktop\\barberApp\\barber.csproj",
+        "packagesPath": "C:\\Users\\oab28\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\oab28\\Desktop\\barberApp\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/home/moayad/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\oab28\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net6.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -89,7 +91,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/6.0.101/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.102\\RuntimeIdentifierGraph.json"
         }
       }
     }

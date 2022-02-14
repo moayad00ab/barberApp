@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using barber.ViewModels;
 using barber.Data;
 using Microsoft.Data.SqlClient;
-using System.Runtime.InteropServices; 
+using System.Runtime.InteropServices;
 
 namespace barber.Controllers;
 
@@ -12,7 +12,7 @@ public class accountController : Controller
     private readonly UserManager<users> _userManager;
     private readonly SignInManager<users> _signInManager;
     private readonly ApplicationDbContext _context;
-private readonly IConfiguration _configuration;
+    private readonly IConfiguration _configuration;
     // accountController constuctor
     public accountController(UserManager<users> userManager, SignInManager<users> signInManager, ApplicationDbContext context, IConfiguration configuration)
     {
@@ -21,7 +21,7 @@ private readonly IConfiguration _configuration;
         _context = context;
         _configuration = configuration;
     }
-   
+
     // Action to handle the post reqeust from the user to perform logout function
     [HttpPost]
     public async Task<IActionResult> logout()
@@ -44,10 +44,10 @@ private readonly IConfiguration _configuration;
         if (ModelState.IsValid)
         {
             //if valid, code will create new user
-            var user = new users { UserName = model.UserName, Email = model.Email, PhoneNumber = model.PhoneNumber, barbersShop = "44db9f8c-f90f-4a7a-9018-51648bfb756a"};
+            var user = new users { fName = model.fName, lName = model.lName, UserName = model.UserName, Email = model.Email, PhoneNumber = model.PhoneNumber, barbersShop = "d995163a-70c2-41ab-867a-0e8030e32fb1" };
             var result = await _userManager.CreateAsync(user, model.Password);
-            
-            await _userManager.AddToRoleAsync(user, "Admin");
+
+            await _userManager.AddToRoleAsync(user, "Barber");
             //check if the user created succsfuly 
             if (result.Succeeded)
             {
@@ -174,16 +174,18 @@ private readonly IConfiguration _configuration;
         }
         else
         {
-            if(user.barbersShop == null){
-            using (SqlConnection sqlCon = new SqlConnection(_configuration.GetConnectionString("DbConnection")))
-        {
-            sqlCon.Open();
+            if (user.barbersShop == null)
+            {
+                using (SqlConnection sqlCon = new SqlConnection(_configuration.GetConnectionString("DbConnection")))
+                {
+                    sqlCon.Open();
 
-            string query = "DELETE FROM AspNetUsers WHERE barbersShop = @Id";
-            SqlCommand sqlCmd = new SqlCommand(query, sqlCon);
-            sqlCmd.Parameters.AddWithValue("@Id", id);
-            sqlCmd.ExecuteNonQuery();
-            }            }
+                    string query = "DELETE FROM AspNetUsers WHERE barbersShop = @Id";
+                    SqlCommand sqlCmd = new SqlCommand(query, sqlCon);
+                    sqlCmd.Parameters.AddWithValue("@Id", id);
+                    sqlCmd.ExecuteNonQuery();
+                }
+            }
             var result = await _userManager.DeleteAsync(user);
             if (result.Succeeded)
             {
@@ -228,10 +230,10 @@ private readonly IConfiguration _configuration;
     [HttpGet]
     public async Task<IActionResult> barbers([Optional] string id)
     {
-        if(id != null)
-        return View(_userManager.Users.Where(a => a.barbersShop == id));
-        else 
-        return View(await _userManager.GetUsersInRoleAsync("Barber"));
+        if (id != null)
+            return View(_userManager.Users.Where(a => a.barbersShop == id));
+        else
+            return View(await _userManager.GetUsersInRoleAsync("Barber"));
     }
 }
 

@@ -1,0 +1,43 @@
+@model barber.ViewModels.CreateAppointmentViewModel;
+@{
+    ViewBag.Title = "Create appointment";
+}
+@addTagHelper*, Microsoft.AspNetCore.Mvc.TagHelpers
+<h1>Create appointment</h1>
+<div class="row justify-content-center">
+    <div class="col-md-4">
+        <form method="post">
+            <input asp-for="shopId" type="hidden" class="form-control" />
+            <input asp-for="barberId" type="hidden" class="form-control" />  
+            <div class="form-group">
+                <label asp-for="shop"></label>
+                <input asp-for="shop" class="form-control" />
+                <span asp-validation-for="shop" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="barber"></label>
+                <input asp-for="barber" class="form-control" />
+                <span asp-validation-for="barber" class="text-danger"></span>
+            </div>
+
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="service" class="control-label"></label>
+                <select class="form-select" aria-placeholder="Select service" class="form-control"
+                    asp-items="Model.service"></select>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Date"></label>
+                <input asp-for="Date" class="form-control" />
+                <span asp-validation-for="Date" class="text-danger"></span>
+            </div>
+
+            <br />
+            <button type="submit" class="btn btn-primary">Create appointment</button>
+        </form>
+    </div>
+    @section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    }
+</div>

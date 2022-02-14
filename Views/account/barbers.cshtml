@@ -10,13 +10,13 @@
     foreach (var user in Model)
     {
         <div class="card mb-3">
-    <div class="card-header">
-        Username : @user.UserName
-    </div>
-    <div class="card-body">
-        <h5 class="card-title">@user.Email</h5>
-    </div>
-    @if (User.IsInRole("BarberShop") || User.IsInRole("Admin"))
+            <div class="card-header">
+                Username : @user.UserName
+            </div>
+            <div class="card-body">
+                <h5 class="card-title">@user.Email</h5>
+            </div>
+            @if (User.IsInRole("BarberShop") || User.IsInRole("Admin"))
             {
                 <div class="card-footer">
                     <form method="post" asp-action="Delete" asp-controller="Account" asp-route-id="@user.Id" class="mt-3">
@@ -32,18 +32,14 @@
                 <a asp-action="create" asp-controller="appointment" asp-route-id="@user.Id" class="btn btn-primary">Book an
                     appointment</a>
             </div>
-            <div class="card-footer">
-                <a asp-action="cre" asp-controller="appointment" asp-route-id="@user.Id" class="btn btn-primary">Book an
-                    appointment</a>
-            </div>
         </div>
     }
 }
 else
 {
     <div class="card">
-    <div class="card-header">
-        No barbers in this shop
+        <div class="card-header">
+            No barbers in this shop
+        </div>
     </div>
-</div>
 }
