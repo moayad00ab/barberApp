@@ -3,89 +3,84 @@
     ViewBag.Title = "User Registration";
 }
 
-
 <div class="row justify-content-center">
     <div class="col-md-4">
-        <form method="post">
-            <center>
-                <br />
-                <div class="form-group">
-                    <label asp-for="fName"></label>
-                    <input asp-for="fName" class="form-control" />
-                    <span asp-validation-for="fName" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="Email"></label>
-                    <input asp-for="Email" class="form-control" />
-                    <span asp-validation-for="Email" class="text-danger"></span>
-                </div>
-            </center>
+        <form method="post" id="regForm">
+            <br />
+            <div class="form-group">
+                <label asp-for="fName"></label>
+                <input asp-for="fName" class="form-control" />
+                <span asp-validation-for="fName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="lName"></label>
+                <input asp-for="lName" class="form-control" />
+                <span asp-validation-for="lName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Email"></label>
+                <input asp-for="Email" class="form-control" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
             <div class="form-group">
                 <label asp-for="EmailConfirmed"></label>
                 <input asp-for="EmailConfirmed" class="form-control" />
                 <span asp-validation-for="EmailConfirmed" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="fName"></label>
-                <input asp-for="fName" class="form-control" />
-                <span asp-validation-for="fName" class="text-danger"></span>
+                <label asp-for="UserName"></label>
+                <input asp-for="UserName" class="form-control" />
+                <span asp-validation-for="UserName" class="text-danger"></span>
+
+                @if (ViewBag.MsgUser != null)
+                {
+                    <p class="text-danger">@ViewBag.MsgUser</p>
+                }
             </div>
-            <center>
-                <div class="form-group">
-                    <label asp-for="UserName"></label>
-                    <input asp-for="UserName" class="form-control" />
-                    <span asp-validation-for="UserName" class="text-danger"></span>
-
-                    @if (ViewBag.MsgUser != null)
-                    {
-                        <p class="text-danger">@ViewBag.MsgUser</p>
-                    }
-                </div>
-            </center>
-            <center>
-                <div class="form-group">
-                    <label asp-for="Password"></label>
-                    <input asp-for="Password" class="form-control" />
-                    <span asp-validation-for="Password" class="text-danger"></span>
-                </div>
-            </center>
-            <center>
-                <div class="form-group">
-                    <label asp-for="PConfirmation"></label>
-                    <input asp-for="PConfirmation" class="form-control" />
-                    <span asp-validation-for="PConfirmation" class="text-danger"></span>
-                </div>
-            </center>
-
-            <center>
-                <div class="form-group">
-                    <label asp-for="PhoneNumber"></label>
-                    <input asp-for="PhoneNumber" class="form-control" />
-                    <span asp-validation-for="PhoneNumber" class="text-danger"></span>
-                </div>
-            </center>
+            <div class="form-group">
+                <label asp-for="Password"></label>
+                <input asp-for="Password" class="form-control" />
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PConfirmation"></label>
+                <input asp-for="PConfirmation" class="form-control" />
+                <span asp-validation-for="PConfirmation" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PhoneNumber"></label>
+                <input asp-for="PhoneNumber" class="form-control" />
+                <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+            </div>
+            <div id="BarbersShop" style="display: none">
+                <label asp-for="barbersShop"></label>
+               <select class="form-select" asp-for="barbersShop" class="form-control"
+                    asp-items="@ViewBag.Users"></select>
+            </div>
+            <div id="ShopOwn" style="display: none">
+                <label asp-for="shop"></label>
+                <input asp-for="shop" class="form-control" />
+            </div>
             <br />
-
-
             <p class="muted">What type of user are you?</p>
-            <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
-                <input type="radio" class="btn-check" name="userType" id="btnradio1" checked="true">
-                <label class="btn btn-outline-primary" for="btnradio1">Customer</label>
-                <input type="radio" class="btn-check" name="userType" id="barber" value="barber">
-                <label class="btn btn-outline-primary" for="barber">Barber</label>
-                <input type="radio" class="btn-check" name="userType" id="barberShop" value="barberShop">
-                <label class="btn btn-outline-primary" for="barberShop">Barber shop owner</label>
-            </div>
-            <br><br>
-
-
-
-            <center><button type="submit" class="btn btn-primary" onclick="userType();">Sign Up</button></center>
-            <br><br>
-
-            <input type="hidden" id="results" asp-for="userType">
-
-
+                <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                    <label for="customer" class="btn btn-outline-primary">
+                    <input type="radio" class="btn-check" id="customer" name="chk" onclick="ShowHideDiv(id)" />
+                    Customer
+                </label>
+                <label for="chkBarber" class="btn btn-outline-primary">
+                    <input type="radio" class="btn-check" id="chkBarber" name="chk" onclick="ShowHideDiv(id)" />
+                    Barber
+                </label>
+                <label for="chkShop" class="btn btn-outline-primary">
+                    <input type="radio" class="btn-check" id="chkShop" name="chk" onclick="ShowHideDiv(id)" />
+                    Barber shop owner
+                </label>
+                </div>
+                <hr />
+                <br><br>
+                <button type="submit" class="btn btn-primary">Sign Up</button>
+                <br><br>
         </form>
     </div>
 </div>
@@ -93,29 +88,24 @@
 @section Scripts {
 
 <script>
-
-
-
-
-    function userType() {
-
-
-        var userType = document.forms[0];
-        var type;
-        var i;
-
-
-        for (i = 0; i < userType.length; i++) {
-
-            if (userType[i].checked) {
-                type = type[i].value + "";
-            }
+    function ShowHideDiv(name) {
+        var BarbersShop = document.getElementById("BarbersShop");
+        var chkBarber = document.getElementById("chkBarber");
+        var chkShop = document.getElementById("chkShop");
+        var ShopOwn = document.getElementById("ShopOwn");
+        if(name == "chkBarber"){
+        BarbersShop.style.display = chkBarber.checked ? "block" : "none";
+        ShopOwn.style.display = chkShop.checked ? "display" : "none";
         }
-
-        document.getElementById("results").value = type;
-
+        if(name == "chkShop"){Register
+        BarbersShop.style.display = chkBarber.checked ? "display" : "none";
+        ShopOwn.style.display = chkShop.checked ? "block" : "none";    
+        }
+        if(name == "customer"){
+        BarbersShop.style.display = chkBarber.checked ? "display" : "none";
+        ShopOwn.style.display = chkShop.checked ? "display" : "none";    
+        }
     }
-
 </script>
 
 

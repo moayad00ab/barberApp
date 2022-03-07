@@ -81,29 +81,6 @@ namespace barber.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "appointment",
-                columns: table => new
-                {
-                    appointID = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    barberId = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Date = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: true),
-                    shopId = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    appointApprove = table.Column<bool>(type: "bit", nullable: false),
-                    service = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    payStatus = table.Column<bool>(type: "bit", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_appointment", x => x.appointID);
-                    table.ForeignKey(
-                        name: "FK_appointment_AspNetUsers_UserId",
-                        column: x => x.UserId,
-                        principalTable: "AspNetUsers",
-                        principalColumn: "Id");
-                });
-
-            migrationBuilder.CreateTable(
                 name: "AspNetUserClaims",
                 columns: table => new
                 {
@@ -245,6 +222,39 @@ namespace barber.Migrations
                         principalTable: "AspNetUsers",
                         principalColumn: "Id");
                 });
+
+            migrationBuilder.CreateTable(
+                name: "appointment",
+                columns: table => new
+                {
+                    appointID = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    barberId = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Date = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    shopId = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    appointApprove = table.Column<bool>(type: "bit", nullable: false),
+                    serviceId = table.Column<string>(type: "nvarchar(450)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_appointment", x => x.appointID);
+                    table.ForeignKey(
+                        name: "FK_appointment_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_appointment_services_serviceId",
+                        column: x => x.serviceId,
+                        principalTable: "services",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_appointment_serviceId",
+                table: "appointment",
+                column: "serviceId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_appointment_UserId",

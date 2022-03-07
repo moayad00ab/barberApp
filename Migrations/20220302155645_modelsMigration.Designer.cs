@@ -12,7 +12,7 @@ using barber.Data;
 namespace barber.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220213164118_modelsMigration")]
+    [Migration("20220302155645_modelsMigration")]
     partial class modelsMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -24,7 +24,7 @@ namespace barber.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
-            modelBuilder.Entity("barber.Models.appointment", b =>
+            modelBuilder.Entity("barber.appointment", b =>
                 {
                     b.Property<string>("appointID")
                         .ValueGeneratedOnAdd()
@@ -42,11 +42,9 @@ namespace barber.Migrations
                     b.Property<string>("barberId")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<bool>("payStatus")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("service")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<string>("serviceId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("shopId")
                         .HasColumnType("nvarchar(max)");
@@ -54,6 +52,8 @@ namespace barber.Migrations
                     b.HasKey("appointID");
 
                     b.HasIndex("UserId");
+
+                    b.HasIndex("serviceId");
 
                     b.ToTable("appointment");
                 });
@@ -361,13 +361,21 @@ namespace barber.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("barber.Models.appointment", b =>
+            modelBuilder.Entity("barber.appointment", b =>
                 {
                     b.HasOne("barber.users", "User")
                         .WithMany()
                         .HasForeignKey("UserId");
 
+                    b.HasOne("barber.Models.services", "service")
+                        .WithMany()
+                        .HasForeignKey("serviceId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.Navigation("User");
+
+                    b.Navigation("service");
                 });
 
             modelBuilder.Entity("barber.Models.files", b =>

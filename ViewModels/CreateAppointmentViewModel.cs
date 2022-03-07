@@ -10,9 +10,6 @@ namespace barber.ViewModels;
 
 public class CreateAppointmentViewModel
 {
-    [Key]
-    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-    public string appointID { get; set; }
     public string barberId { get; set; }
     [Display(Name = "Barber: ")]
     public string barber { get; set; }
@@ -30,8 +27,9 @@ public class CreateAppointmentViewModel
     [Display(Name = "Service")]
     [Required(ErrorMessage = "please select service")]
     public IEnumerable<SelectListItem> service { get; set; }
-    [Display(Name = "Payment")]
-    public bool payStatus { get; set; }
+    public string description {get; set;}
+    public float price {get; set;}
+
 
 
 }

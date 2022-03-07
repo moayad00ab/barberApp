@@ -49,17 +49,37 @@ namespace barber.Controllers
             return View(model);
         }
         [HttpPost]
-        public async Task<IActionResult> Create(CreateAppointmentViewModel model)
+        public async Task<ActionResult> Create(CreateAppointmentViewModel model)
         {
             if (ModelState.IsValid)
             {
-                appointment obj = new appointment() { Date = model.Date, barberId = model.barber, service = model.service.ToString(), User = model.User, appointApprove = model.appointApprove, shopId = model.shop };
+                System.Security.Claims.ClaimsPrincipal currentUser = this.User;
+                var id = _userManager.GetUserId(User); // Get user id:
+                var ser = SearchByName(model.description);
+                var obj = new appointment()
+                {
+                    Date = model.Date,
+                    barberId = model.barber,
+                    service = ser,
+                    User = await _userManager.FindByIdAsync(id),
+                    appointApprove = model.appointApprove,
+                    shopId = model.shop
+                };
                 _context.appointment.Add(obj);
                 await _context.SaveChangesAsync();
             }
             return View(model);
         }
-
+        public services SearchByName(string serviceName)
+        {
+            services service = null;
+            if (!String.IsNullOrEmpty(serviceName))
+            {
+                //service = _context.service.FirstOrDefault(c => c.service_name == serviceName);
+                service = _context.services.Where(e => e.description == serviceName).FirstOrDefault();
+            }
+            return service;
+        }
 
     }
 }

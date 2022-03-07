@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using barber.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace barber;
@@ -25,7 +26,7 @@ public class appointment
     public bool appointApprove { get; set; }
     [Display(Name = "Service")]
     [Required(ErrorMessage = "please select service")]
-    public string service { get; set; }
+    public services service { get; set; }
     [Display(Name = "Payment")]
     public bool payStatus { get; set; }
 
