@@ -2,9 +2,12 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using barber.ViewModels;
 using barber.Data;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.Data.SqlClient;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Runtime.InteropServices;
+using System.Security.Claims;
+using barber.Models;
 
 namespace barber.Controllers;
 
@@ -14,13 +17,15 @@ public class accountController : Controller
     private readonly SignInManager<users> _signInManager;
     private readonly ApplicationDbContext _context;
     private readonly IConfiguration _configuration;
+    private readonly IWebHostEnvironment hostingEnvironment;
     // accountController constuctor
-    public accountController(UserManager<users> userManager, SignInManager<users> signInManager, ApplicationDbContext context, IConfiguration configuration)
+    public accountController(UserManager<users> userManager, SignInManager<users> signInManager, ApplicationDbContext context, IConfiguration configuration, IWebHostEnvironment hostingEnvironment)
     {
         _userManager = userManager;
         _signInManager = signInManager;
         _context = context;
         _configuration = configuration;
+        this.hostingEnvironment = hostingEnvironment;
     }
 
     // Action to handle the post reqeust from the user to perform logout function
@@ -45,50 +50,55 @@ public class accountController : Controller
         //check if incoming model object is valid
         if (ModelState.IsValid)
         {
-            
-            //if valid, code will create new user
-            var user = new users { fName = model.fName, lName = model.lName, UserName = model.UserName, Email = model.Email, PhoneNumber = model.PhoneNumber};
-            if(model.shop == null && model.barbersShop != null){
+
+            //if valid, code will create new user 
+         var user = new users { fName = model.fName, lName = model.lName, UserName = model.UserName, Email = model.Email, PhoneNumber = model.PhoneNumber };
+         await _userManager.CreateAsync(user, model.Password);
+         await _userManager.AddToRoleAsync(user, "Customer");
+         /**   if (model.shop == null && model.barbersShop != null)
+            {
                 user.barbersShop = model.barbersShop;
-            await _userManager.CreateAsync(user, model.Password);
-            await _userManager.AddToRoleAsync(user, "Barber");
+                await _userManager.CreateAsync(user, model.Password);
+                await _userManager.AddToRoleAsync(user, "Barber");
             }
-            if(model.barbersShop == null && model.shop != null){
+            if (model.barbersShop == null && model.shop != null)
+            {
                 user.shopName = model.shop;
                 await _userManager.CreateAsync(user, model.Password);
-            await _userManager.AddToRoleAsync(user, "BarberShop");
+                await _userManager.AddToRoleAsync(user, "BarberShop");
             }
-            if(model.shop == null && model.barbersShop == null){
-            await _userManager.CreateAsync(user, model.Password);
-            await _userManager.AddToRoleAsync(user, "Customer");
-            }
+            if (model.shop == null && model.barbersShop == null)
+            {
+                await _userManager.CreateAsync(user, model.Password);
+                await _userManager.AddToRoleAsync(user, "Customer");
+            }**/
             //check if the user created succsfuly 
-            
-            
-                // await _signInManager.SignInAsync(user, isPersistent: false);
-                return RedirectToAction("Login");
-            
 
 
-         //   else
-           // {
-             //   ViewBag.MsgUser = "username is already taken";
-               // return View("Register");
+            // await _signInManager.SignInAsync(user, isPersistent: false);
+            return RedirectToAction("Login");
+
+
+
+            //   else
+            // {
+            //   ViewBag.MsgUser = "username is already taken";
+            // return View("Register");
             //}
         }
         //pass the model object to view,and display any validation error may happend 
         return View();
     }
-     public users SearchByName(string shopName)
+    public users SearchByName(string shopName)
+    {
+        users shop = null;
+        if (!String.IsNullOrEmpty(shopName))
         {
-            users shop = null;
-            if (!String.IsNullOrEmpty(shopName))
-            {
-                //shop = _context.shop.FirstOrDefault(c => c.shop_name == shopName);
-                shop = _userManager.Users.Where(e => e.shopName == shopName).FirstOrDefault();
-            }
-            return shop;
+            //shop = _context.shop.FirstOrDefault(c => c.shop_name == shopName);
+            shop = _userManager.Users.Where(e => e.shopName == shopName).FirstOrDefault();
         }
+        return shop;
+    }
     // Action for returning the login page to the user
     [HttpGet]
     public IActionResult Login()
@@ -259,6 +269,8 @@ public class accountController : Controller
         else
             return View(await _userManager.GetUsersInRoleAsync("Barber"));
     }
+    // Action for returning the customerProfile page to the user
+    
 }
 
 

@@ -1,0 +1,21 @@
+@model IEnumerable<files>
+@{
+    ViewBag.Title = "All files";
+}
+@section css{
+
+}
+
+<p class="muted" style="left: 200px; top: 30%; text-transform: uppercase;padding-left: 20%; padding-top: 3%;"> my shops</p>
+
+
+<p class="muted" style="left: 200px; top: 30%; text-transform: uppercase;padding-left: 20%; padding-top: 3%;"> my cuts</p>
+<div class="image-grid">
+    @foreach (var files in Model)
+    {
+<img src="/Uploads/@Url.Content(files.ImgPath)" alt="" />
+    }
+    <a asp-action="Upload" asp-controller="files" class="btn btn-outline-light">
+                    Add photo
+                </a>
+</div>

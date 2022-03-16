@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "wNPgNuBnfa1HbMr2tDeZEisAVppf70BT1mbHLqvGlB4=",
+  "Hash": "hHQc2D7dcRd+PCFnpXfdz/Pa54XZmFap84XvAijMXdQ=",
   "Source": "barber",
   "BasePath": "_content/barber",
   "Mode": "Default",
@@ -2174,6 +2174,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot/lib/jquery/LICENSE.txt"
+    },
+    {
+      "Identity": "/home/moayad/Desktop/barber/wwwroot/Uploads/ea7bfa3e-fc71-40e0-a5fb-5959c6436edb_barberShopSeq.drawio.png",
+      "SourceId": "barber",
+      "SourceType": "Discovered",
+      "ContentRoot": "/home/moayad/Desktop/barber/wwwroot/",
+      "BasePath": "_content/barber",
+      "RelativePath": "Uploads/ea7bfa3e-fc71-40e0-a5fb-5959c6436edb_barberShopSeq.drawio.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/Uploads/ea7bfa3e-fc71-40e0-a5fb-5959c6436edb_barberShopSeq.drawio.png"
     }
   ]
 }

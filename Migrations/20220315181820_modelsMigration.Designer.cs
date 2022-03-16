@@ -12,7 +12,7 @@ using barber.Data;
 namespace barber.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220302155645_modelsMigration")]
+    [Migration("20220315181820_modelsMigration")]
     partial class modelsMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -41,6 +41,9 @@ namespace barber.Migrations
 
                     b.Property<string>("barberId")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("payStatus")
+                        .HasColumnType("bit");
 
                     b.Property<string>("serviceId")
                         .IsRequired()

@@ -16378,6 +16378,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "/home/moayad/Desktop/barber/Views/files/Index.cshtml",
+      "TargetPath": "Views\\files\\Index.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "/home/moayad/Desktop/barber/Views/account/Edit.cshtml",
       "TargetPath": "Views\\account\\Edit.cshtml",
       "FileKind": "mvc"
@@ -16423,8 +16428,8 @@
       "FileKind": "mvc"
     },
     {
-      "FilePath": "/home/moayad/Desktop/barber/Views/account/customerProfile.cshtml",
-      "TargetPath": "Views\\account\\customerProfile.cshtml",
+      "FilePath": "/home/moayad/Desktop/barber/Views/files/Upload.cshtml",
+      "TargetPath": "Views\\files\\Upload.cshtml",
       "FileKind": "mvc"
     }
   ],

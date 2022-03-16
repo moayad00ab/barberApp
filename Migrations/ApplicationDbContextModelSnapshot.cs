@@ -40,6 +40,9 @@ namespace barber.Migrations
                     b.Property<string>("barberId")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<bool>("payStatus")
+                        .HasColumnType("bit");
+
                     b.Property<string>("serviceId")
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");

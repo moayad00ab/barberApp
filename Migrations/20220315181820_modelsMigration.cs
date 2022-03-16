@@ -233,7 +233,8 @@ namespace barber.Migrations
                     UserId = table.Column<string>(type: "nvarchar(450)", nullable: true),
                     shopId = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     appointApprove = table.Column<bool>(type: "bit", nullable: false),
-                    serviceId = table.Column<string>(type: "nvarchar(450)", nullable: false)
+                    serviceId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    payStatus = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
