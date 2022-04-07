@@ -13,6 +13,6 @@ namespace barber.Models;
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public string id { get; set; }
         public users User { get; set; }
-        public TimeOnly start { get; set; }
-        public TimeOnly end { get; set; }
+        public DateTime start { get; set; }
+        public DateTime end { get; set; }
     }
