@@ -244,6 +244,25 @@ namespace barber.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "slot",
+                columns: table => new
+                {
+                    id = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    start = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    end = table.Column<DateTime>(type: "datetime2", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_slot", x => x.id);
+                    table.ForeignKey(
+                        name: "FK_slot_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id");
+                });
+
+            migrationBuilder.CreateTable(
                 name: "appointment",
                 columns: table => new
                 {
@@ -254,7 +273,8 @@ namespace barber.Migrations
                     shopId = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     appointApprove = table.Column<bool>(type: "bit", nullable: false),
                     serviceId = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    payStatus = table.Column<bool>(type: "bit", nullable: false)
+                    payStatus = table.Column<bool>(type: "bit", nullable: false),
+                    slotid = table.Column<string>(type: "nvarchar(450)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -270,12 +290,22 @@ namespace barber.Migrations
                         principalTable: "services",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_appointment_slot_slotid",
+                        column: x => x.slotid,
+                        principalTable: "slot",
+                        principalColumn: "id");
                 });
 
             migrationBuilder.CreateIndex(
                 name: "IX_appointment_serviceId",
                 table: "appointment",
                 column: "serviceId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_appointment_slotid",
+                table: "appointment",
+                column: "slotid");
 
             migrationBuilder.CreateIndex(
                 name: "IX_appointment_UserId",
@@ -340,6 +370,11 @@ namespace barber.Migrations
                 name: "IX_services_UserId",
                 table: "services",
                 column: "UserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_slot_UserId",
+                table: "slot",
+                column: "UserId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -373,6 +408,9 @@ namespace barber.Migrations
 
             migrationBuilder.DropTable(
                 name: "services");
+
+            migrationBuilder.DropTable(
+                name: "slot");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");

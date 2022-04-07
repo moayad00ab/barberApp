@@ -50,11 +50,16 @@ namespace barber.Migrations
                     b.Property<string>("shopId")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("slotid")
+                        .HasColumnType("nvarchar(450)");
+
                     b.HasKey("appointID");
 
                     b.HasIndex("UserId");
 
                     b.HasIndex("serviceId");
+
+                    b.HasIndex("slotid");
 
                     b.ToTable("appointment");
                 });
@@ -150,6 +155,28 @@ namespace barber.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("services");
+                });
+
+            modelBuilder.Entity("barber.Models.slot", b =>
+                {
+                    b.Property<string>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<DateTime>("end")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("start")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("slot");
                 });
 
             modelBuilder.Entity("barber.users", b =>
@@ -399,9 +426,15 @@ namespace barber.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("barber.Models.slot", "slot")
+                        .WithMany()
+                        .HasForeignKey("slotid");
+
                     b.Navigation("User");
 
                     b.Navigation("service");
+
+                    b.Navigation("slot");
                 });
 
             modelBuilder.Entity("barber.Models.feedback", b =>
@@ -432,6 +465,15 @@ namespace barber.Migrations
                 });
 
             modelBuilder.Entity("barber.Models.services", b =>
+                {
+                    b.HasOne("barber.users", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("barber.Models.slot", b =>
                 {
                     b.HasOne("barber.users", "User")
                         .WithMany()
