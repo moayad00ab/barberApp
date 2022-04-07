@@ -59,6 +59,31 @@ namespace barber.Migrations
                     b.ToTable("appointment");
                 });
 
+            modelBuilder.Entity("barber.Models.feedback", b =>
+                {
+                    b.Property<string>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("comment")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("publishDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("rating")
+                        .HasColumnType("int");
+
+                    b.HasKey("id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("feedback");
+                });
+
             modelBuilder.Entity("barber.Models.files", b =>
                 {
                     b.Property<int>("file_id")
@@ -377,6 +402,15 @@ namespace barber.Migrations
                     b.Navigation("User");
 
                     b.Navigation("service");
+                });
+
+            modelBuilder.Entity("barber.Models.feedback", b =>
+                {
+                    b.HasOne("barber.users", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId");
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("barber.Models.files", b =>

@@ -2,8 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using barber.Models;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
-
 namespace barber.ViewModels
 {
     public class RegisterViewModel
@@ -40,10 +41,9 @@ namespace barber.ViewModels
         [Compare("Password", ErrorMessage = "Password and confirmation password do not match.")]
         public String PConfirmation { get; set; }
         [Display(Name = "Your shop name: ")]
-        public string shop { get; set; }
+        public string shop { get; set; } = "specify your shop";
         public IEnumerable<SelectListItem> shops { get; set; }
         [Display(Name = "Choose your shop: ")]
         public string barbersShop { get; set; }
-
     }
 }

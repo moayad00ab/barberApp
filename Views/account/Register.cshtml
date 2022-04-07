@@ -57,7 +57,7 @@
             <div id="BarbersShop" style="display: none">
                 <label asp-for="barbersShop"></label>
                <select class="form-select" asp-for="barbersShop" class="form-control"
-                    asp-items="@ViewBag.Users"></select>
+                    asp-items="ViewBag.Users"></select>
             </div>
             <div id="ShopOwn" style="display: none">
                 <label asp-for="shop"></label>
@@ -67,7 +67,7 @@
             <p class="muted">What type of user are you?</p>
                 <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
                     <label for="customer" class="btn btn-outline-primary">
-                    <input type="radio" class="btn-check" id="customer" name="chk" onclick="ShowHideDiv(id)" />
+                    <input type="radio" class="btn-check" id="customer" name="chk" onclick="ShowHideDiv(id)" checked />
                     Customer
                 </label>
                 <label for="chkBarber" class="btn btn-outline-primary">

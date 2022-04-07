@@ -40,6 +40,9 @@ public class accountController : Controller
     // Action for returning the register page to the user
     public IActionResult Register()
     {
+        var model = new RegisterViewModel(){
+            barbersShop = "select"
+        };
         ViewBag.Users = new SelectList(_userManager.Users.Where(a => a.shopName != null), nameof(users.Id), nameof(users.shopName));
         return View();
     }
@@ -52,26 +55,26 @@ public class accountController : Controller
         {
 
             //if valid, code will create new user 
-         var user = new users { fName = model.fName, lName = model.lName, UserName = model.UserName, Email = model.Email, PhoneNumber = model.PhoneNumber };
-         await _userManager.CreateAsync(user, model.Password);
-         await _userManager.AddToRoleAsync(user, "Customer");
-         /**   if (model.shop == null && model.barbersShop != null)
-            {
-                user.barbersShop = model.barbersShop;
-                await _userManager.CreateAsync(user, model.Password);
-                await _userManager.AddToRoleAsync(user, "Barber");
-            }
-            if (model.barbersShop == null && model.shop != null)
-            {
-                user.shopName = model.shop;
-                await _userManager.CreateAsync(user, model.Password);
-                await _userManager.AddToRoleAsync(user, "BarberShop");
-            }
-            if (model.shop == null && model.barbersShop == null)
-            {
-                await _userManager.CreateAsync(user, model.Password);
-                await _userManager.AddToRoleAsync(user, "Customer");
-            }**/
+            var user = new users { fName = model.fName, lName = model.lName, UserName = model.UserName, Email = model.Email, PhoneNumber = model.PhoneNumber };
+            await _userManager.CreateAsync(user, model.Password);
+            await _userManager.AddToRoleAsync(user, "Customer");
+            /**   if (model.shop == null && model.barbersShop != null)
+               {
+                   user.barbersShop = model.barbersShop;
+                   await _userManager.CreateAsync(user, model.Password);
+                   await _userManager.AddToRoleAsync(user, "Barber");
+               }
+               if (model.barbersShop == null && model.shop != null)
+               {
+                   user.shopName = model.shop;
+                   await _userManager.CreateAsync(user, model.Password);
+                   await _userManager.AddToRoleAsync(user, "BarberShop");
+               }
+               if (model.shop == null && model.barbersShop == null)
+               {
+                   await _userManager.CreateAsync(user, model.Password);
+                   await _userManager.AddToRoleAsync(user, "Customer");
+               }**/
             //check if the user created succsfuly 
 
 
@@ -94,7 +97,7 @@ public class accountController : Controller
         users shop = null;
         if (!String.IsNullOrEmpty(shopName))
         {
-            //shop = _context.shop.FirstOrDefault(c => c.shop_name == shopName);
+            //shop = __context.shop.FirstOrDefault(c => c.shop_name == shopName);
             shop = _userManager.Users.Where(e => e.shopName == shopName).FirstOrDefault();
         }
         return shop;
@@ -270,7 +273,34 @@ public class accountController : Controller
             return View(await _userManager.GetUsersInRoleAsync("Barber"));
     }
     // Action for returning the customerProfile page to the user
-    
+    public async Task<IActionResult> Details([Optional] string id)
+    {
+        if (id == null)
+        {
+            return BadRequest();
+        }
+        users user = await _userManager.FindByIdAsync(id);
+        feedbackViewModel vm =
+   new feedbackViewModel();
+        if (user == null){
+            return NotFound();
+        }
+        vm.UserId = id;
+        vm.User = user.shopName;
+        var comments = _context.feedback.Where(d => d.UserId.Equals(id)).ToList();
+        vm.comments = comments;
+        var ratings = _context.feedback.Where(d => d.UserId.Equals(id)).ToList();
+   if (ratings.Count() > 0){
+            var ratingSum = ratings.Sum(d => d.rating);
+   ViewBag.RatingSum = ratingSum;
+        var ratingCount = ratings.Count();
+        ViewBag.RatingCount = ratingCount;
+   }else{
+            ViewBag.RatingSum = 0;
+   ViewBag.RatingCount = 0;
+   }
+   return View(vm);   
+}
 }
 
 

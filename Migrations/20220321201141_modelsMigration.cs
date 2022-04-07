@@ -166,6 +166,26 @@ namespace barber.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "feedback",
+                columns: table => new
+                {
+                    id = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    comment = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    publishDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    rating = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_feedback", x => x.id);
+                    table.ForeignKey(
+                        name: "FK_feedback_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id");
+                });
+
+            migrationBuilder.CreateTable(
                 name: "files",
                 columns: table => new
                 {
@@ -302,6 +322,11 @@ namespace barber.Migrations
                 filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
+                name: "IX_feedback_UserId",
+                table: "feedback",
+                column: "UserId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_files_UserId",
                 table: "files",
                 column: "UserId");
@@ -336,6 +361,9 @@ namespace barber.Migrations
 
             migrationBuilder.DropTable(
                 name: "AspNetUserTokens");
+
+            migrationBuilder.DropTable(
+                name: "feedback");
 
             migrationBuilder.DropTable(
                 name: "files");

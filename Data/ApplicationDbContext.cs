@@ -22,5 +22,5 @@ public class ApplicationDbContext : IdentityDbContext<users>
         public DbSet<offers> offers { get; set; }
         public DbSet<services> services { get; set; }
         public DbSet<files> files { get; set; }
-       
+       public DbSet<feedback> feedback { get; set; }
 }

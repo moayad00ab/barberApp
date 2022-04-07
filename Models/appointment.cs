@@ -29,5 +29,7 @@ public class appointment
     public services service { get; set; }
     [Display(Name = "Payment")]
     public bool payStatus { get; set; }
+    public slot slot { get; set; }
+
 
 }
