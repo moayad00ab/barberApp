@@ -2,7 +2,7 @@
 @{
     ViewBag.Title = "Create Service";
 }
-<h1>Create service</h1>
+<h1>Add service</h1>
 <div class="row justify-content-center">
     <div class="col-md-4">
         <form method="post">
@@ -11,17 +11,24 @@
                     <input asp-for="description" class="form-control" />
                     <span asp-validation-for="description" class="text-danger"></span>
                 </div>
-                <div class="form-group">
-                    <label asp-for="price"></label>
-                    <input asp-for="price" class="form-control" />
-                    <span asp-validation-for="price" class="text-danger"></span>
+               
+                    <div class="form-group">
+  <label asp-for="price" class="form-label mt-4">Price</label>
+  <div class="form-group">
+    <div class="input-group mb-3">
+      <span class="input-group-text">SAR</span>
+      <input asp-for="price" class="form-control" aria-label="Amount (to the nearest dollar)">
+      <span class="input-group-text">.00</span>
+    </div>
                 </div>
                 <div class="form-group">
-                    <label asp-for="time"></label>
+                    <label asp-for="time">Duration</label>
                     <input asp-for="time" class="form-control" />
                     <span asp-validation-for="time" class="text-danger"></span>
                 </div>
-           <button type="submit" class="btn btn-primary">Create service</button>
+                 <small  class="form-text text-muted">Enter Duration in minutes. </small>
+                <br><br>
+           <button type="submit" class="btn btn-primary">Add service</button>
         </form>
     </div>
 </div>

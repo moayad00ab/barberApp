@@ -10,6 +10,7 @@ using barber;
 using barber.ViewModels;
 using barber.Data;
 using Microsoft.AspNetCore.Identity;
+using System.Runtime.InteropServices;
 
 namespace barber.Controllers;
 public class filesController : Controller
@@ -29,11 +30,23 @@ public class filesController : Controller
         this.hostingEnvironment = hostingEnvironment;
     }
 [HttpGet]
-    public IActionResult Index()
+    public async Task<IActionResult> Index([Optional] string Id)
     {
-        System.Security.Claims.ClaimsPrincipal currentUser = this.User;
-        var id = _userManager.GetUserId(User);
-        return View(_context.files.Where(a => a.User.Id == id).ToList());
+       if (string.IsNullOrWhiteSpace(Id))
+        {
+            System.Security.Claims.ClaimsPrincipal currentUser = this.User;
+            Id = _userManager.GetUserId(User); // Get user id:
+        }
+        var shop = await _userManager.FindByIdAsync(Id);
+        ProfileViewModel model = new ProfileViewModel();
+        model.Id = shop.Id;
+        model.ShopName = shop.shopName;
+        model.Barbers = _userManager.Users.Where(u => u.barbersShop == shop.Id).ToList();
+        model.Imgs = _context.files.Where(a => a.User.Id == Id).ToList();
+        model.startTime = shop.sWorkTime;
+        model.EndTime = shop.eWorkTime;
+
+        return View(model);
     }
     // POST: files/Upload
     // To protect from overposting attacks, enable the specific properties you want to bind to.

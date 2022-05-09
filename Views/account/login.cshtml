@@ -6,16 +6,18 @@
     <div class="col-md-4">
         <form method="post">
             <br />
-            <div class="form-group">
-                <label asp-for="UserName"></label>
-                <input asp-for="UserName" class="form-control" />
-                <span asp-validation-for="UserName" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Password"></label>
-                <input asp-for="Password" class="form-control" />
-                <span asp-validation-for="Password" class="text-danger"></span>
-            </div>
+       
+
+             <div class="form-floating mb-3">
+    <input asp-for="UserName" class="form-control" id="floatingInput" placeholder="User Name">
+    <label for="floatingInput">User Name</label>
+  </div>
+        
+
+            <div class="form-floating">
+    <input asp-for="Password" class="form-control" id="floatingPassword" placeholder="Password">
+    <label for="floatingPassword">Password</label>
+  </div>
             <div asp-validation-summary="All" class="text-danger"></div>
 
             <div class="form-group">

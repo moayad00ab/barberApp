@@ -290,6 +290,9 @@ namespace barber.Migrations
                     b.Property<string>("street")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("userType")
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("Id");
 
                     b.HasIndex("NormalizedEmail")

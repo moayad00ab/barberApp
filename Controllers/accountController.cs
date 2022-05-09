@@ -188,7 +188,7 @@ public class accountController : Controller
 
             if (result.Succeeded)
             {
-                return View("ListUsers", _userManager.Users);
+                return RedirectToAction("Index", "files");
             }
 
             foreach (var error in result.Errors)
@@ -226,6 +226,7 @@ public class accountController : Controller
             editView.UserName = user.UserName;
             editView.sWorkTime = user.sWorkTime;
             editView.eWorkTime = user.eWorkTime;
+            editView.shopName = user.shopName;
             return View(editView);
         }
 

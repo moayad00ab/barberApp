@@ -24,5 +24,8 @@ namespace barber;
         public string [] daysWork { get; set; }
         public bool isAvilable { get; set; }
 
+         public string userType { get; set; }
+
+
     }
 

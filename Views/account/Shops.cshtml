@@ -9,14 +9,14 @@
     {
         <div class="card mb-3">
     <div class="card-body">
-        <h5 class="card-title">@user.shopName</h5>
+        <h5 class="card-title">@user.shopName </h5>
     </div>
     <div class="card-footer">
-        <a asp-action="barbers" asp-controller="Account" asp-route-id="@user.Id">
-            <input type="submit" value="Show barbers" class="btn btn-primary" />
+        <a asp-action="Index" asp-controller="files" asp-route-id="@user.Id" class="btn btn-primary">
+           View shop
         </a>
     </div>
-    @if (User.IsInRole("BarberShop") || User.IsInRole("Admin"))
+    @if (User.IsInRole("Admin"))
             {
                 <div class="card-footer">
                     <form method="post" asp-action="Delete" asp-controller="Account" asp-route-id="@user.Id" class="mt-3">

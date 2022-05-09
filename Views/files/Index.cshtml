@@ -1,4 +1,4 @@
-@model IEnumerable<files>
+@model barber.ViewModels.ProfileViewModel
 @{
     ViewBag.Title = "All files";
 }
@@ -6,16 +6,49 @@
 
 }
 
-<p class="muted" style="left: 200px; top: 30%; text-transform: uppercase;padding-left: 20%; padding-top: 3%;"> my shops</p>
 
+<h1>@Model.ShopName</h1>
+<h2>Working time</h2>
+<h3 class="text-muted">@Model.startTime - @Model.EndTime</h3>
+
+@if (User.IsInRole("BarberShop"))
+            {
+
+                 <a asp-action="create" asp-controller="service">
+            <input type="submit" value="Add service" class="btn btn-outline-dark" />
+        </a>
+                <a asp-action="Index" asp-controller="service">
+            <input type="submit" value="Edit service" class="btn btn-outline-dark" />
+        </a>
+
+
+         <a asp-action="Edit" asp-controller="account">
+            <input type="submit" value="Edit profile and working time" class="btn btn-outline-dark" />
+        </a>
+         <a asp-action="create" asp-controller="offer">
+            <input type="submit" value="Add offer" class="btn btn-outline-dark" />
+        </a>
+              
+            }
+
+            <p class="muted" style="left: 200px; top: 30%; text-transform: uppercase;padding-left: 20%; padding-top: 3%;">  Barbers</p>
+
+            @foreach (var barbers in Model.Barbers)
+                {
+                    <div class="card text-white bg-dark mb-3" style="max-width: 20rem;">
+  <div class="card-header">@barbers.fName @barbers.lName</div>
+ <a asp-action="create" asp-controller="appointment" asp-route-id="@barbers.Id" class="btn btn-outline-info">Book</a>
+
+</div>
+                }
 
 <p class="muted" style="left: 200px; top: 30%; text-transform: uppercase;padding-left: 20%; padding-top: 3%;"> my cuts</p>
 <div class="image-grid">
-    @foreach (var files in Model)
+    @foreach (var files in Model.Imgs)
     {
 <img src="/Uploads/@Url.Content(files.ImgPath)" alt="" />
     }
-    <a asp-action="Upload" asp-controller="files" class="btn btn-outline-light">
+    <a asp-action="Upload" asp-controller="files" class="btn btn-outline-primary">
                     Add photo
                 </a>
 </div>

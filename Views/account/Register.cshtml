@@ -3,9 +3,10 @@
     ViewBag.Title = "User Registration";
 }
 
-<div class="row justify-content-center">
+<div class="row justify-content-center" >
     <div class="col-md-4">
         <form method="post">
+            
                 <br />
                 <div class="form-group">
                     <label asp-for="fName"></label>
@@ -19,9 +20,11 @@
                 </div>
                 <div class="form-group">
                     <label asp-for="Email"></label>
-                    <input asp-for="Email" class="form-control" />
+                    <input asp-for="Email" class="form-control" aria-describedby="emailHelp" placeholder="Enter email">
+      <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> 
                     <span asp-validation-for="Email" class="text-danger"></span>
                 </div>
+        
             <div class="form-group">
                 <label asp-for="EmailConfirmed"></label>
                 <input asp-for="EmailConfirmed" class="form-control" />
@@ -39,7 +42,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="Password"></label>
-                <input asp-for="Password" class="form-control" />
+                <input asp-for="Password" class="form-control" placeholder="Password"/>
                 <span asp-validation-for="Password" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -52,20 +55,13 @@
                 <input asp-for="PhoneNumber" class="form-control" />
                 <span asp-validation-for="PhoneNumber" class="text-danger"></span>
             </div>
+            <p class="muted">What type of user are you?</p>
             @Html.RadioButtonFor(model => model.userType, "Customer") Customer<br />
             @Html.RadioButtonFor(model => model.userType, "Barber") Barber<br />
             @Html.RadioButtonFor(model => model.userType, "BarberShop") Barber shop<br />
-            <div id="BarbersShop" style="display: none">
-                <label asp-for="barbersShop"></label>
-               <select class="form-select" asp-for="barbersShop" class="form-control"
-                    asp-items="ViewBag.Users"></select>
-            </div>
-            <div id="ShopOwn" style="display: none">
-                <label asp-for="shop"></label>
-                <input asp-for="shop" class="form-control" />
-            </div>
+           
             <br />
-            <p class="muted">What type of user are you?</p>
+            
                 <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
                     <label for="customer" class="btn btn-outline-primary">
                     <input type="radio" class="btn-check" id="customer" name="chk" onclick="ShowHideDiv(id)" checked />
@@ -80,7 +76,17 @@
                     Barber shop owner
                 </label>
                 </div>
-                <hr />
+                
+                 <div id="BarbersShop" style="display: none">
+                <label asp-for="barbersShop"></label>
+               <select class="form-select" asp-for="barbersShop" class="form-control"
+                    asp-items="ViewBag.Users"></select>
+            </div>
+            <div id="ShopOwn" style="display: none">
+                <label asp-for="shop"></label>
+                <input asp-for="shop" class="form-control" />
+            </div>
+            <hr />
                 <br><br>
                 <button type="submit" class="btn btn-primary">Sign Up</button>
                 <br><br>

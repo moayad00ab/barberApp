@@ -12,7 +12,7 @@ using barber.Data;
 namespace barber.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220508103654_modelsMigration")]
+    [Migration("20220509042148_modelsMigration")]
     partial class modelsMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -290,6 +290,9 @@ namespace barber.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("street")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("userType")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");

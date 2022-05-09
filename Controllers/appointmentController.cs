@@ -46,18 +46,7 @@ namespace barber.Controllers
             
            
             ViewBag.timeList = new SelectList(_context.timeList.Where(a => a.barber.Id == barber.Id), nameof(timeList.id), nameof(timeList.strtime));
-            List<timeList> f = ViewBag.timeList;
-
-            for (int i = 0; i < 7; i++)
-            {
-             for (int j = 0; j < tempAppointment.Count; j++)
-             {
-                 if (ViewBag.timeList[i].strtime == tempAppointment[j].stime)
-                 {
-                     ViewBag.timeList.Remove(ViewBag.timeList[i]);
-                 }
-             }   
-            }
+           
             var model = new CreateAppointmentViewModel();
             model.services = serviceList;
             model.barberId = barber.Id;

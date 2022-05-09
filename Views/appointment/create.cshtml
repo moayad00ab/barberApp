@@ -9,17 +9,19 @@
         <form method="post">
             <input asp-for="shopId" type="hidden" class="form-control" />
             <input asp-for="barberId" type="hidden" class="form-control" />  
+           
+           <div class="form-group">
+  <fieldset>
+    <label asp-for="shop" class="form-label mt-4" for="readOnlyInput"></label>
+    <input asp-for="shop" class="form-control" id="readOnlyInput" type="text" readonly="" />
+  </fieldset>
+</div>     
             <div class="form-group">
-                <label asp-for="shop"></label>
-                <input asp-for="shop" class="form-control" />
-                <span asp-validation-for="shop" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="barber"></label>
-                <input asp-for="barber" class="form-control" />
-                <span asp-validation-for="barber" class="text-danger"></span>
-            </div>
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+  <fieldset>
+    <label asp-for="barber" class="form-label mt-4" for="readOnlyInput"></label>
+    <input asp-for="barber" class="form-control" id="readOnlyInput" type="text" readonly="" />
+  </fieldset>
+</div>
             <div class="form-group">
                 <label asp-for="service" class="control-label"></label>
                 <select class="form-select" asp-for="service" placeholder="Select service" class="form-control"
@@ -30,13 +32,7 @@
                 <select class="form-select" asp-for="stime" placeholder="Select slot" class="form-control"
                     asp-items="ViewBag.timeList"></select>
             </div>
-                 <div class="container">
-<div class="row">
-<div class="col-md-2">
-<button class="btn btn-primary"></button>
-</div>
-</div>
-                 </div>
+                
             <br />
             <button type="submit" class="btn btn-primary">Create appointment</button>
         </form>
