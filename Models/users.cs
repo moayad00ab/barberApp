@@ -18,11 +18,11 @@ namespace barber;
         public int postelCode { get; set; }
         public string city { get; set; }
         public float rating { get; set; }
-        public DateTime sWorkTime { get; set; }
-        public DateTime eWorkTime { get; set; }
+        public string sWorkTime { get; set; }
+        public string eWorkTime { get; set; }
         [NotMapped]
         public string [] daysWork { get; set; }
-        
+        public bool isAvilable { get; set; }
 
     }
 

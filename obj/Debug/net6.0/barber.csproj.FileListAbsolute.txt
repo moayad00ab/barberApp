@@ -1221,3 +1221,4 @@ C:/Users/oab28/Desktop/barberApp/obj/Debug/net6.0/barber.dll
 C:/Users/oab28/Desktop/barberApp/obj/Debug/net6.0/ref/barber.dll
 C:/Users/oab28/Desktop/barberApp/obj/Debug/net6.0/barber.pdb
 C:/Users/oab28/Desktop/barberApp/obj/Debug/net6.0/barber.genruntimeconfig.cache
+/home/moayad/Desktop/barber/bin/Debug/net6.0/Quartz.dll

@@ -16,8 +16,8 @@ public class appointment
     public string barberId { get; set; }
     [Display(Name = "Date")]
     [Required(ErrorMessage = "please choose date")]
-    [BindProperty, DisplayFormat(DataFormatString = "{0:yyyy-MM-ddTHH:mm}", ApplyFormatInEditMode = true)]
-    public DateTime Date { get; set; }
+    [BindProperty, DisplayFormat(DataFormatString = "{yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+    public string Date { get; set; }
     [Display(Name = "Customer")]
     public users User { get; set; }
     [Display(Name = "Barber shop")]
@@ -29,7 +29,8 @@ public class appointment
     public services service { get; set; }
     [Display(Name = "Payment")]
     public bool payStatus { get; set; }
-    public slot slot { get; set; }
+    public string stime { get; set; }
+    public string etime { get; set; }
 
 
 }

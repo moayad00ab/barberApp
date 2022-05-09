@@ -15,8 +15,8 @@ public class CreateAppointmentViewModel
     public string barber { get; set; }
     [Display(Name = "Date")]
     [Required(ErrorMessage = "please choose date")]
-    [BindProperty, DisplayFormat(DataFormatString = "{0:yyyy-MM-ddTHH:mm}", ApplyFormatInEditMode = true)]
-    public DateTime Date { get; set; }
+    [BindProperty, DisplayFormat(DataFormatString = "{yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+    public DateOnly Date { get; set; }
     [Display(Name = "Customer")]
     public users User { get; set; }
     public string shopId { get; set; }
@@ -25,10 +25,10 @@ public class CreateAppointmentViewModel
     [Display(Name = "Approval")]
     public bool appointApprove { get; set; }
     [Display(Name = "Service")]
+    public IEnumerable<SelectListItem> services { get; set; }
     [Required(ErrorMessage = "please select service")]
-    public IEnumerable<SelectListItem> service { get; set; }
-    public string description {get; set;}
-    public float price {get; set;}
+    public string service {get; set;}
+    public string stime {get; set;}
 
 
 

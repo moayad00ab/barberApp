@@ -7,14 +7,12 @@ using Microsoft.AspNetCore.Http;
 
 namespace barber.Models;
 
-    public class slot
+    public class timeList
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public string id { get; set; }
-        public users User { get; set; }
-        public List<slot> slotRange { get; set; }
-        [NotMapped]
-        public DateOnly date { get; set; }
+       public string strtime { get; set; }
+       public users barber { get; set; }
 
     }

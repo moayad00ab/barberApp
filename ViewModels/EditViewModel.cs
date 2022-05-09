@@ -38,8 +38,8 @@ namespace barber.ViewModels;
         public string city { get; set; }
         public float rating { get; set; }
         [Display(Name = "Start working time: ")]
-        public TimeOnly sWorkTime { get; set; }
-        [Display(Name = "Username: ")]
-        public TimeOnly eWorkTime { get; set; }
+        public string sWorkTime { get; set; }
+        [Display(Name = "End working time: ")]
+        public string eWorkTime { get; set; }
         public DateOnly daysWork { get; set; }
     }

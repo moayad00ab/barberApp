@@ -12,7 +12,7 @@ using barber.Data;
 namespace barber.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220407201811_modelsMigration")]
+    [Migration("20220508103654_modelsMigration")]
     partial class modelsMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -30,8 +30,9 @@ namespace barber.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<DateTime>("Date")
-                        .HasColumnType("datetime2");
+                    b.Property<string>("Date")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("UserId")
                         .HasColumnType("nvarchar(450)");
@@ -40,6 +41,9 @@ namespace barber.Migrations
                         .HasColumnType("bit");
 
                     b.Property<string>("barberId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("etime")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("payStatus")
@@ -52,16 +56,14 @@ namespace barber.Migrations
                     b.Property<string>("shopId")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("slotid")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<string>("stime")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("appointID");
 
                     b.HasIndex("UserId");
 
                     b.HasIndex("serviceId");
-
-                    b.HasIndex("slotid");
 
                     b.ToTable("appointment");
                 });
@@ -152,6 +154,9 @@ namespace barber.Migrations
                     b.Property<float>("price")
                         .HasColumnType("real");
 
+                    b.Property<string>("time")
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("Id");
 
                     b.HasIndex("UserId");
@@ -168,17 +173,35 @@ namespace barber.Migrations
                     b.Property<string>("UserId")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<DateTime>("end")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime>("start")
-                        .HasColumnType("datetime2");
+                    b.Property<string>("slotid")
+                        .HasColumnType("nvarchar(450)");
 
                     b.HasKey("id");
 
                     b.HasIndex("UserId");
 
+                    b.HasIndex("slotid");
+
                     b.ToTable("slot");
+                });
+
+            modelBuilder.Entity("barber.Models.timeList", b =>
+                {
+                    b.Property<string>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("barberId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("strtime")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("id");
+
+                    b.HasIndex("barberId");
+
+                    b.ToTable("timeList");
                 });
 
             modelBuilder.Entity("barber.users", b =>
@@ -242,11 +265,14 @@ namespace barber.Migrations
                     b.Property<string>("district")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("eWorkTime")
-                        .HasColumnType("datetime2");
+                    b.Property<string>("eWorkTime")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("fName")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("isAvilable")
+                        .HasColumnType("bit");
 
                     b.Property<string>("lName")
                         .HasColumnType("nvarchar(max)");
@@ -257,8 +283,8 @@ namespace barber.Migrations
                     b.Property<float>("rating")
                         .HasColumnType("real");
 
-                    b.Property<DateTime>("sWorkTime")
-                        .HasColumnType("datetime2");
+                    b.Property<string>("sWorkTime")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("shopName")
                         .HasColumnType("nvarchar(max)");
@@ -428,15 +454,9 @@ namespace barber.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("barber.Models.slot", "slot")
-                        .WithMany()
-                        .HasForeignKey("slotid");
-
                     b.Navigation("User");
 
                     b.Navigation("service");
-
-                    b.Navigation("slot");
                 });
 
             modelBuilder.Entity("barber.Models.feedback", b =>
@@ -481,7 +501,20 @@ namespace barber.Migrations
                         .WithMany()
                         .HasForeignKey("UserId");
 
+                    b.HasOne("barber.Models.slot", null)
+                        .WithMany("slotRange")
+                        .HasForeignKey("slotid");
+
                     b.Navigation("User");
+                });
+
+            modelBuilder.Entity("barber.Models.timeList", b =>
+                {
+                    b.HasOne("barber.users", "barber")
+                        .WithMany()
+                        .HasForeignKey("barberId");
+
+                    b.Navigation("barber");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -533,6 +566,11 @@ namespace barber.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("barber.Models.slot", b =>
+                {
+                    b.Navigation("slotRange");
                 });
 #pragma warning restore 612, 618
         }

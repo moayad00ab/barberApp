@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "5NZT7obILsyZ4IN3qlVmIv8c+idlJcb26pZKyF8HEzYHiHQsoadqrrOT6olCzRGaEKQPtSY7mGXWK2IQdivARQ==",
+  "dgSpecHash": "bS2XkUBXLwHAugKC9gGMkW6ZNHwRRFXUQusLclKOJ6ePN4oswHVEggWIMqhkm1Nr9gEnya+dEFixJ4iY5jqDhg==",
   "success": true,
   "projectFilePath": "/home/moayad/Desktop/barber/barber.csproj",
   "expectedPackageFiles": [
@@ -53,6 +53,7 @@
     "/home/moayad/.nuget/packages/microsoft.netcore.platforms/3.1.0/microsoft.netcore.platforms.3.1.0.nupkg.sha512",
     "/home/moayad/.nuget/packages/microsoft.win32.registry/4.7.0/microsoft.win32.registry.4.7.0.nupkg.sha512",
     "/home/moayad/.nuget/packages/microsoft.win32.systemevents/4.7.0/microsoft.win32.systemevents.4.7.0.nupkg.sha512",
+    "/home/moayad/.nuget/packages/quartz/3.4.0/quartz.3.4.0.nupkg.sha512",
     "/home/moayad/.nuget/packages/sqlitepclraw.bundle_e_sqlite3/2.0.6/sqlitepclraw.bundle_e_sqlite3.2.0.6.nupkg.sha512",
     "/home/moayad/.nuget/packages/sqlitepclraw.core/2.0.6/sqlitepclraw.core.2.0.6.nupkg.sha512",
     "/home/moayad/.nuget/packages/sqlitepclraw.lib.e_sqlite3/2.0.6/sqlitepclraw.lib.e_sqlite3.2.0.6.nupkg.sha512",

@@ -35,14 +35,9 @@ public class accountController : Controller
         await _signInManager.SignOutAsync();
         return RedirectToAction("Login");
     }
-
-
     // Action for returning the register page to the user
     public IActionResult Register()
     {
-        var model = new RegisterViewModel(){
-            barbersShop = "select"
-        };
         ViewBag.Users = new SelectList(_userManager.Users.Where(a => a.shopName != null), nameof(users.Id), nameof(users.shopName));
         return View();
     }
@@ -53,11 +48,25 @@ public class accountController : Controller
         //check if incoming model object is valid
         if (ModelState.IsValid)
         {
-
             //if valid, code will create new user 
-            var user = new users { fName = model.fName, lName = model.lName, UserName = model.UserName, Email = model.Email, PhoneNumber = model.PhoneNumber };
+            if (model.userType == "Customer")
+            {
+            var user = new users { fName = model.fName, lName = model.lName, UserName = model.UserName, Email = model.Email, PhoneNumber = model.PhoneNumber};
             await _userManager.CreateAsync(user, model.Password);
             await _userManager.AddToRoleAsync(user, "Customer");
+            }
+            if (model.userType == "Barber")
+            {
+                 var user = new users { fName = model.fName, lName = model.lName, UserName = model.UserName, Email = model.Email, PhoneNumber = model.PhoneNumber, barbersShop = model.barbersShop};
+            await _userManager.CreateAsync(user, model.Password);
+            await _userManager.AddToRoleAsync(user, "Barber");
+            }
+            if (model.userType == "BarberShop")
+            {
+            var user = new users { fName = model.fName, lName = model.lName, UserName = model.UserName, Email = model.Email, PhoneNumber = model.PhoneNumber, shopName = model.shop};
+            await _userManager.CreateAsync(user, model.Password);
+            await _userManager.AddToRoleAsync(user, "BarberShop");
+            }
             /**   if (model.shop == null && model.barbersShop != null)
                {
                    user.barbersShop = model.barbersShop;
@@ -138,18 +147,42 @@ public class accountController : Controller
     public async Task<IActionResult> Edit(EditViewModel model)
     {
         var user = await _userManager.FindByIdAsync(model.Id);
-
         if (user == null)
         {
             System.Security.Claims.ClaimsPrincipal currentUser = this.User;
             model.Id = _userManager.GetUserId(User); // Get user id:
         }
-        else
-        {
+        
             user.UserName = model.UserName;
             user.Email = model.Email;
             user.barbersShop = model.barbersShop;
+            user.sWorkTime = model.sWorkTime;
+            user.eWorkTime = model.eWorkTime;
 
+            var startTime = Convert.ToDateTime(user.sWorkTime);
+            var endTime = Convert.ToDateTime(user.eWorkTime);
+            var min = 60;
+            var timeInterval = endTime.Subtract(startTime);
+            var totalMin = Convert.ToInt32(timeInterval.TotalMinutes);
+            var noOfTotalSlots = totalMin/min;
+
+            if (model.eWorkTime != null && model.sWorkTime != null)
+            {
+                _context.timeList.RemoveRange(_context.timeList.Where(x => x.barber.barbersShop == user.Id));
+            }
+            List<users> barbers = _userManager.Users.Where(a => a.barbersShop == user.Id).ToList();
+            for (int i = 0; i < barbers.Count; i++)
+            {
+            
+            for (int j = 0; j < noOfTotalSlots; j++)
+            {
+                timeList obj = new timeList();
+                startTime = startTime.AddMinutes(min);
+                obj.strtime = startTime.ToString("hh:mm tt");
+                obj.barber = barbers[i];
+                _context.timeList.Add(obj);
+            }  
+            }
             // Update the user 
             var result = await _userManager.UpdateAsync(user);
 
@@ -162,9 +195,6 @@ public class accountController : Controller
             {
                 ModelState.AddModelError("", error.Description);
             }
-
-
-        }
         return View(model);
     }
     // Action for returning the edit page to the user
@@ -194,6 +224,8 @@ public class accountController : Controller
             editView.Email = user.Email;
             editView.PhoneNumber = user.PhoneNumber;
             editView.UserName = user.UserName;
+            editView.sWorkTime = user.sWorkTime;
+            editView.eWorkTime = user.eWorkTime;
             return View(editView);
         }
 
@@ -213,6 +245,8 @@ public class accountController : Controller
         {
             if (user.barbersShop == null)
             {
+                _context.slot.RemoveRange(_context.slot.Where(x => x.User.Id == user.Id));
+
                 using (SqlConnection sqlCon = new SqlConnection(_configuration.GetConnectionString("DbConnection")))
                 {
                     sqlCon.Open();

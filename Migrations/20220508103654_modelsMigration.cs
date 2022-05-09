@@ -37,8 +37,9 @@ namespace barber.Migrations
                     postelCode = table.Column<int>(type: "int", nullable: false),
                     city = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     rating = table.Column<float>(type: "real", nullable: false),
-                    sWorkTime = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    eWorkTime = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    sWorkTime = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    eWorkTime = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    isAvilable = table.Column<bool>(type: "bit", nullable: false),
                     UserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     NormalizedUserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     Email = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
@@ -231,7 +232,8 @@ namespace barber.Migrations
                     Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     description = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     price = table.Column<float>(type: "real", nullable: false),
-                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: true)
+                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    time = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -249,8 +251,7 @@ namespace barber.Migrations
                 {
                     id = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     UserId = table.Column<string>(type: "nvarchar(450)", nullable: true),
-                    start = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    end = table.Column<DateTime>(type: "datetime2", nullable: false)
+                    slotid = table.Column<string>(type: "nvarchar(450)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -258,6 +259,29 @@ namespace barber.Migrations
                     table.ForeignKey(
                         name: "FK_slot_AspNetUsers_UserId",
                         column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_slot_slot_slotid",
+                        column: x => x.slotid,
+                        principalTable: "slot",
+                        principalColumn: "id");
+                });
+
+            migrationBuilder.CreateTable(
+                name: "timeList",
+                columns: table => new
+                {
+                    id = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    strtime = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    barberId = table.Column<string>(type: "nvarchar(450)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_timeList", x => x.id);
+                    table.ForeignKey(
+                        name: "FK_timeList_AspNetUsers_barberId",
+                        column: x => x.barberId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id");
                 });
@@ -268,13 +292,14 @@ namespace barber.Migrations
                 {
                     appointID = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     barberId = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Date = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Date = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     UserId = table.Column<string>(type: "nvarchar(450)", nullable: true),
                     shopId = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     appointApprove = table.Column<bool>(type: "bit", nullable: false),
                     serviceId = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     payStatus = table.Column<bool>(type: "bit", nullable: false),
-                    slotid = table.Column<string>(type: "nvarchar(450)", nullable: true)
+                    stime = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    etime = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -290,22 +315,12 @@ namespace barber.Migrations
                         principalTable: "services",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_appointment_slot_slotid",
-                        column: x => x.slotid,
-                        principalTable: "slot",
-                        principalColumn: "id");
                 });
 
             migrationBuilder.CreateIndex(
                 name: "IX_appointment_serviceId",
                 table: "appointment",
                 column: "serviceId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_appointment_slotid",
-                table: "appointment",
-                column: "slotid");
 
             migrationBuilder.CreateIndex(
                 name: "IX_appointment_UserId",
@@ -372,9 +387,19 @@ namespace barber.Migrations
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_slot_slotid",
+                table: "slot",
+                column: "slotid");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_slot_UserId",
                 table: "slot",
                 column: "UserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_timeList_barberId",
+                table: "timeList",
+                column: "barberId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -407,10 +432,13 @@ namespace barber.Migrations
                 name: "offers");
 
             migrationBuilder.DropTable(
-                name: "services");
+                name: "slot");
 
             migrationBuilder.DropTable(
-                name: "slot");
+                name: "timeList");
+
+            migrationBuilder.DropTable(
+                name: "services");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");

@@ -44,6 +44,7 @@ namespace barber.ViewModels
         public string shop { get; set; } = "specify your shop";
         public IEnumerable<SelectListItem> shops { get; set; }
         [Display(Name = "Choose your shop: ")]
-        public string barbersShop { get; set; }
+        public string barbersShop { get; set; } = "specify your shop";
+        public string userType { get; set; }
     }
 }

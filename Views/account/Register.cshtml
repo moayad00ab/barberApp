@@ -6,7 +6,6 @@
 <div class="row justify-content-center">
     <div class="col-md-4">
         <form method="post">
-            <center>
                 <br />
                 <div class="form-group">
                     <label asp-for="fName"></label>
@@ -23,7 +22,6 @@
                     <input asp-for="Email" class="form-control" />
                     <span asp-validation-for="Email" class="text-danger"></span>
                 </div>
-            </center>
             <div class="form-group">
                 <label asp-for="EmailConfirmed"></label>
                 <input asp-for="EmailConfirmed" class="form-control" />
@@ -54,6 +52,9 @@
                 <input asp-for="PhoneNumber" class="form-control" />
                 <span asp-validation-for="PhoneNumber" class="text-danger"></span>
             </div>
+            @Html.RadioButtonFor(model => model.userType, "Customer") Customer<br />
+            @Html.RadioButtonFor(model => model.userType, "Barber") Barber<br />
+            @Html.RadioButtonFor(model => model.userType, "BarberShop") Barber shop<br />
             <div id="BarbersShop" style="display: none">
                 <label asp-for="barbersShop"></label>
                <select class="form-select" asp-for="barbersShop" class="form-control"

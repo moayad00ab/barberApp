@@ -23,4 +23,7 @@ public class ApplicationDbContext : IdentityDbContext<users>
         public DbSet<services> services { get; set; }
         public DbSet<files> files { get; set; }
        public DbSet<feedback> feedback { get; set; }
+              public DbSet<timeList> timeList { get; set; }
+
+       public DbSet<slot> slot { get; set; }
 }
