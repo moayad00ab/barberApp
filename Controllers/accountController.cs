@@ -181,6 +181,7 @@ public class accountController : Controller
                 obj.strtime = startTime.ToString("hh:mm tt");
                 obj.barber = barbers[i];
                 _context.timeList.Add(obj);
+                await _context.SaveChangesAsync();
             }  
             }
             // Update the user 
@@ -335,6 +336,24 @@ public class accountController : Controller
    ViewBag.RatingCount = 0;
    }
    return View(vm);   
+}
+[HttpGet]
+public async Task<IActionResult> insights(){
+     System.Security.Claims.ClaimsPrincipal currentUser = this.User;
+            var id = _userManager.GetUserId(User); // Get user id:
+            var shop =await _userManager.FindByIdAsync(id);
+    List<appointment> numOfAppointments = _context.appointment.Where(a => a.shopId == shop.shopName).ToList();
+    int count = 0;
+    DateOnly currentDate = DateOnly.FromDateTime(DateTime.Now);
+    for (int i = 0; i < 30; i++)
+    {
+        
+    }
+    List<appointment> numOfAppointments30 = _context.appointment.Where(a => a.shopId == shop.shopName).ToList();
+
+    insightsViewModel model = new insightsViewModel();
+    model.numOfAllAppointment = numOfAppointments.Count.ToString();
+    return View(model);
 }
 }
 

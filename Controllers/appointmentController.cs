@@ -42,11 +42,22 @@ namespace barber.Controllers
                 Text = d.description
             });
             var today = DateOnly.FromDateTime(DateTime.Now).ToString();
-            List<appointment> tempAppointment = _context.appointment.ToList().Where(a => a.Date == today && a.barberId == barber.Id).ToList();
+            List<appointment> tempAppointment = _context.appointment.Where(a => a.Date == today).ToList();
             
-           
-            ViewBag.timeList = new SelectList(_context.timeList.Where(a => a.barber.Id == barber.Id), nameof(timeList.id), nameof(timeList.strtime));
-           
+            List<timeList> barberSlots = _context.timeList.Where(a => a.barber.Id == barber.Id).ToList();
+            for (int j = 0; j < tempAppointment.Count; j++)
+            {
+                
+            
+            for (int i = 0; i < barberSlots.Count; i++)
+            {
+                if (barberSlots[i].strtime == tempAppointment[j].stime)
+                {
+                   barberSlots.Remove(barberSlots.Find(x => x.strtime == barberSlots[i].strtime)); 
+                }
+            }
+            }
+            ViewBag.timeList = new SelectList(barberSlots, nameof(timeList.id), nameof(timeList.strtime));
             var model = new CreateAppointmentViewModel();
             model.services = serviceList;
             model.barberId = barber.Id;
@@ -98,4 +109,3 @@ namespace barber.Controllers
 
     }
 }
-
