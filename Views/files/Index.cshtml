@@ -6,10 +6,51 @@
 
 }
 
+@if (User.IsInRole("Barber"))
+{
+  //  <h2>Are you avilable?</h2>
+    // <div class="form-check form-switch">
+     //   <input asp-for="@Model.IsAvilable" class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
+     //   <label class="form-check-label" for="flexSwitchCheckDefault">Are you available?</label>
 
+      //   @Html.CheckBox("IsAvilable", true)  
+
+//@Html.RadioButtonFor(model => model.IsAvilable, "true")   
+ 
+        
+    //  </div>
+
+      @if(Model.IsAvilable){
+          <h2 class="text-success">available</h2>
+      }else
+      {
+                    <h2 class="text-danger">not available</h2>
+
+      }
+}
 <h1>@Model.ShopName</h1>
-<h2>Working time</h2>
-<h3 class="text-muted">@Model.startTime - @Model.EndTime</h3>
+@if (@Model.ShopName != null)
+{
+
+ <h2>Working time</h2>
+    @if(Model.startTime != null){
+        <h3 class="text-muted">@Model.startTime - @Model.EndTime</h3>
+<br>
+    }else{
+        <h3 class="text-muted">There is no working time yet!</h3>
+
+        @if(User.IsInRole("BarberShop")){
+            <h3 class="text-muted">Please add working time</h3>
+        }
+    }
+   
+
+
+<hr />
+@if(User.IsInRole("Customer")){
+ <a asp-action="create" asp-controller="appointment" asp-route-id="@Model.Id" class="btn btn-outline-success">Book</a>
+ }
+}
 
 @if (User.IsInRole("BarberShop"))
             {
@@ -22,33 +63,134 @@
         </a>
 
 
-         <a asp-action="Edit" asp-controller="account">
-            <input type="submit" value="Edit profile and working time" class="btn btn-outline-dark" />
-        </a>
+         
          <a asp-action="create" asp-controller="offer">
             <input type="submit" value="Add offer" class="btn btn-outline-dark" />
         </a>
               
             }
+@if (@ViewBag.myProfile)
 
-            <p class="muted" style="left: 200px; top: 30%; text-transform: uppercase;padding-left: 20%; padding-top: 3%;">  Barbers</p>
-
+{
+     <a asp-action="Edit" asp-controller="account">
+            <input type="submit" value="Edit profile" class="btn btn-outline-dark" />
+        </a>
+}
+<br>
+@if (@ViewBag.myProfile == false || User.IsInRole("BarberShop") && Model.ShopName == null)
+{
+<h2>Barbers</h2>
+}
+            
+        @if (Model.Barbers != null)
+        {
+                        
             @foreach (var barbers in Model.Barbers)
                 {
                     <div class="card text-white bg-dark mb-3" style="max-width: 20rem;">
-  <div class="card-header">@barbers.fName @barbers.lName</div>
- <a asp-action="create" asp-controller="appointment" asp-route-id="@barbers.Id" class="btn btn-outline-info">Book</a>
+  <div class="card-header">@barbers.fName @barbers.lName @if(barbers.isAvilable) {<p class = "text-success">● avilable</p>}else {<p class = "text-danger">● Not avilable</p>}</div>
+ 
+ @if(User.IsInRole("Customer")){
+ <a asp-action="create" asp-controller="appointment" asp-route-id="@barbers.Id" class="btn btn-outline-success">Book</a>
+ }
+
+ @if(User.IsInRole("Customer") || User.IsInRole("BarberShop")){
+ <a asp-action="Index" asp-controller="files" asp-route-id="@barbers.Id" class="btn btn-outline-warning">View barber's previous work</a>
+ }
 
 </div>
                 }
 
-<p class="muted" style="left: 200px; top: 30%; text-transform: uppercase;padding-left: 20%; padding-top: 3%;"> my cuts</p>
+        }else
+        {
+             <h3 class="text-muted">There is no Barbers time yet!</h3>
+
+        
+        }
+<br>
+
+<br>
+@if (User.IsInRole("BarberShop") || @Model.ShopName != null)
+{
+<h2>Services </h2>
+<table class="table table-hover">
+@if (Model.ListServices != null)
+{
+
+  <thead>
+    <tr>
+      <th scope="col">Service name</th>
+      <th scope="col">Description</th>
+      <th scope="col">Price</th>
+      <th scope="col">Expected service time</th>
+    </tr>
+  </thead>
+
+
+
+    <tbody>
+      @foreach(var services in Model.ListServices)
+      {
+           <tr class="table-active">
+      <td>@services.name</td>
+      <td>@services.description</td>
+      <td>@services.price.00 SAR</td>
+      <td>@services.time min</td>
+      <td> 
+        <form method="post" asp-action="Delete" asp-controller="service" asp-route-id="@services.Id" class="mt-3">
+            <input type="submit" name="Delete" value="Delete" onclick="return confirm('Are you sure you want to Delete @services.name service?')" class="btn btn-danger"/>
+        </form>
+        <br />
+        <a asp-action="Edit" asp-controller="service" asp-route-id="@services.Id" class="btn btn-primary">Edit</a>
+    </td>
+    </tr>
+      }
+
+      </tbody>
+}else
+{
+     <h3 class="text-muted">There is no services yet!</h3>
+
+        @if(User.IsInRole("BarberShop")){
+            <h3 class="text-muted">Please add services </h3>
+        }
+}
+
+    
+
+</table>
+
+}
+@if (User.IsInRole("BarberShop") || @Model.ShopName != null)
+{
+<h2> Shop images</h2>
+
+
+}
+@if (User.IsInRole("Barber"))
+{
+<h2> Previous work</h2>
+
+
+}
+
+@if (User.IsInRole("Customer") && @Model.ShopName == null)
+{
+    <p class="muted" style="left: 200px; top: 30%; text-transform: uppercase; padding-top: 3%;"> My cuts</p>
+
+}
+
 <div class="image-grid">
     @foreach (var files in Model.Imgs)
     {
 <img src="/Uploads/@Url.Content(files.ImgPath)" alt="" />
     }
-    <a asp-action="Upload" asp-controller="files" class="btn btn-outline-primary">
+
+    @if (@ViewBag.myProfile)
+    {
+        <a asp-action="Upload" asp-controller="files" class="btn btn-outline-primary">
                     Add photo
                 </a>
+    }
+    
 </div>

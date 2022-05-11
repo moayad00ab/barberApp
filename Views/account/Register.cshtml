@@ -55,24 +55,35 @@
                 <input asp-for="PhoneNumber" class="form-control" />
                 <span asp-validation-for="PhoneNumber" class="text-danger"></span>
             </div>
+
+            <br>
             <p class="muted">What type of user are you?</p>
             @Html.RadioButtonFor(model => model.userType, "Customer") Customer<br />
             @Html.RadioButtonFor(model => model.userType, "Barber") Barber<br />
             @Html.RadioButtonFor(model => model.userType, "BarberShop") Barber shop<br />
            
             <br />
+
+            <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+  <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" value="customer" checked="" onclick="ShowHideDiv(value)" >
+  <label class="btn btn-outline-primary" for="btnradio1">Radio 1</label>
+  <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off" value="chkBarber" checked="" onclick="ShowHideDiv(value)" >
+  <label class="btn btn-outline-primary" for="btnradio2">Radio 2</label>
+  <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off" value="chkShop" checked="" onclick="ShowHideDiv(value)">
+  <label class="btn btn-outline-primary" for="btnradio3">Radio 3</label>
+</div>
             
                 <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
-                    <label for="customer" class="btn btn-outline-primary">
-                    <input type="radio" class="btn-check" id="customer" name="chk" onclick="ShowHideDiv(id)" checked />
+                    <label for="btnradio1f" class="btn btn-outline-primary">
+                    <input type="radio" class="btn-check" id="btnradio1" name="chk" autocomplete="off" value="" checked="" onclick="ShowHideDiv(value)" checked />
                     Customer
                 </label>
                 <label for="chkBarber" class="btn btn-outline-primary">
-                    <input type="radio" class="btn-check" id="chkBarber" name="chk" onclick="ShowHideDiv(id)" />
+                    <input type="radio" class="btn-check" id="chkBarber" name="chk" autocomplete="off" value="chkBarber" checked="" onclick="ShowHideDiv(value)" checked/>
                     Barber
                 </label>
                 <label for="chkShop" class="btn btn-outline-primary">
-                    <input type="radio" class="btn-check" id="chkShop" name="chk" onclick="ShowHideDiv(id)" />
+                    <input type="radio" class="btn-check" id="chkShop" name="chk" autocomplete="off" value="chkShop" checked="" onclick="ShowHideDiv(value)" checked/>
                     Barber shop owner
                 </label>
                 </div>

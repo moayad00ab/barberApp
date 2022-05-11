@@ -21,6 +21,8 @@ namespace barber.ViewModels
         public string ProfileImg { get; set; }
         public List<files> Imgs { get; set; }
 
+        public List<services> ListServices { get; set; }
+        public bool IsAvilable { get; set; }
    
 
     }

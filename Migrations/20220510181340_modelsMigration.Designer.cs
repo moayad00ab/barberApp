@@ -12,7 +12,7 @@ using barber.Data;
 namespace barber.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220509042148_modelsMigration")]
+    [Migration("20220510181340_modelsMigration")]
     partial class modelsMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -49,10 +49,6 @@ namespace barber.Migrations
                     b.Property<bool>("payStatus")
                         .HasColumnType("bit");
 
-                    b.Property<string>("serviceId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
                     b.Property<string>("shopId")
                         .HasColumnType("nvarchar(max)");
 
@@ -62,8 +58,6 @@ namespace barber.Migrations
                     b.HasKey("appointID");
 
                     b.HasIndex("UserId");
-
-                    b.HasIndex("serviceId");
 
                     b.ToTable("appointment");
                 });
@@ -145,10 +139,13 @@ namespace barber.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<string>("UserId")
+                    b.Property<string>("appointmentappointID")
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("name")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<float>("price")
@@ -157,9 +154,12 @@ namespace barber.Migrations
                     b.Property<string>("time")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("userId")
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("Id");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("appointmentappointID");
 
                     b.ToTable("services");
                 });
@@ -451,15 +451,7 @@ namespace barber.Migrations
                         .WithMany()
                         .HasForeignKey("UserId");
 
-                    b.HasOne("barber.Models.services", "service")
-                        .WithMany()
-                        .HasForeignKey("serviceId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.Navigation("User");
-
-                    b.Navigation("service");
                 });
 
             modelBuilder.Entity("barber.Models.feedback", b =>
@@ -491,11 +483,9 @@ namespace barber.Migrations
 
             modelBuilder.Entity("barber.Models.services", b =>
                 {
-                    b.HasOne("barber.users", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId");
-
-                    b.Navigation("User");
+                    b.HasOne("barber.appointment", null)
+                        .WithMany("service")
+                        .HasForeignKey("appointmentappointID");
                 });
 
             modelBuilder.Entity("barber.Models.slot", b =>
@@ -569,6 +559,11 @@ namespace barber.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("barber.appointment", b =>
+                {
+                    b.Navigation("service");
                 });
 
             modelBuilder.Entity("barber.Models.slot", b =>

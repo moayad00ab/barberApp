@@ -3,38 +3,54 @@
     ViewBag.Title = "Create appointment";
 }
 @addTagHelper*, Microsoft.AspNetCore.Mvc.TagHelpers
-<h1>Create appointment</h1>
+<h1>Book an appointment</h1>
 <div class="row justify-content-center">
     <div class="col-md-4">
         <form method="post">
             <input asp-for="shopId" type="hidden" class="form-control" />
             <input asp-for="barberId" type="hidden" class="form-control" />  
-           
-           <div class="form-group">
+                       <div class="form-group">
   <fieldset>
     <label asp-for="shop" class="form-label mt-4" for="readOnlyInput"></label>
     <input asp-for="shop" class="form-control" id="readOnlyInput" type="text" readonly="" />
   </fieldset>
-</div>     
+</div>
+            
             <div class="form-group">
   <fieldset>
     <label asp-for="barber" class="form-label mt-4" for="readOnlyInput"></label>
     <input asp-for="barber" class="form-control" id="readOnlyInput" type="text" readonly="" />
   </fieldset>
 </div>
-            <div class="form-group">
-                <label asp-for="service" class="control-label"></label>
-                <select class="form-select" asp-for="service" placeholder="Select service" class="form-control"
-                    asp-items="Model.services"></select>
+            <label asp-for="service" class="control-label"></label>
+            @for (var i = 0; i <Model.services.Count; i++)
+            {
+              
+            
+            <div class="form-check">
+                 
+               @Html.CheckBoxFor(model => model.services[i].Selected) @Model.services[i].Text
             </div>
+            }
+
+
+            <legend class="mt-4">What do you want to do?</legend>
+
+
+      <div class="form-check">
+        <input asp-for="service" asp-items="Model.services" class="form-controlcheck-input" type="checkbox" value="" id="flexCheckDefault">
+        <label class="form-check-label" asp-for="service">
+        </label>
+      </div>
+
              <div class="form-group">
-                <label asp-for="stime" class="control-label"></label>
+                <label asp-for="stime" class="control-label">Appointment time</label>
                 <select class="form-select" asp-for="stime" placeholder="Select slot" class="form-control"
                     asp-items="ViewBag.timeList"></select>
             </div>
                 
             <br />
-            <button type="submit" class="btn btn-primary">Create appointment</button>
+            <button type="submit" class="btn btn-primary">Book appointment</button>
         </form>
     </div>
     @section Scripts {

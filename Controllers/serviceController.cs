@@ -2,6 +2,8 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using barber.Models;
 using barber.Data;
+using System.Runtime.InteropServices;
+
 namespace barber.Controllers;
 
     public class serviceController : Controller
@@ -16,9 +18,15 @@ namespace barber.Controllers;
             _context = context;
         }
         [HttpGet]
- public IActionResult create()
+ public async Task<IActionResult> createAsync()
         {
-            return View();
+
+             System.Security.Claims.ClaimsPrincipal currentUser = this.User;
+            var Id = _userManager.GetUserId(User); // Get user id:
+        
+        var shop = await _userManager.FindByIdAsync(Id);
+            services model = new services{userId = shop.Id};
+            return View(model);
         }
         // Action to handle the post reqeust from the user to perform sign up function
         [HttpPost]
@@ -28,11 +36,11 @@ namespace barber.Controllers;
             //check if incoming model object is valid
             if (ModelState.IsValid)
             {
-                service = new services {description = model.description, price = model.price, User = model.User};
+                service = new services {name = model.name, description = model.description, price = model.price, userId = model.userId, time = model.time};
                 var result = _context.services.Add(service);
                await _context.SaveChangesAsync();  
             }
-            return View("Index", _context.services.ToList());
+            return RedirectToAction("Index","files", _context.services.Where(a => a.userId == model.userId).ToList());
         }
          [HttpPost]
         public async Task<IActionResult> Delete(string id)
@@ -41,11 +49,22 @@ namespace barber.Controllers;
            
             _context.services.Remove(service);
             await _context.SaveChangesAsync();
-            return View("Index", _context.services.ToList());
+            return RedirectToAction("Index", "files");
         }
             [HttpGet]
- public IActionResult index()
+ public async Task<IActionResult> indexAsync([Optional] string Id)
         {
-            return View(_context.services.ToList());
+
+            if (Id == null)
+            {
+                
+            
+             System.Security.Claims.ClaimsPrincipal currentUser = this.User;
+            Id = _userManager.GetUserId(User); // Get user id:
+            }
+        var shop = await _userManager.FindByIdAsync(Id);
+            services model = new services{userId = shop.Id};
+
+            return View( _context.services.Where(a => a.userId == model.userId).ToList());
         }
     }

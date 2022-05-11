@@ -42,4 +42,5 @@ namespace barber.ViewModels;
         [Display(Name = "End working time: ")]
         public string eWorkTime { get; set; }
         public DateOnly daysWork { get; set; }
+        public bool isAvilable { get; set; }
     }

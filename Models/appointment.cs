@@ -26,7 +26,7 @@ public class appointment
     public bool appointApprove { get; set; }
     [Display(Name = "Service")]
     [Required(ErrorMessage = "please select service")]
-    public services service { get; set; }
+    public List<services> service { get; set; }
     [Display(Name = "Payment")]
     public bool payStatus { get; set; }
     public string stime { get; set; }

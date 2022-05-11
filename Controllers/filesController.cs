@@ -32,12 +32,30 @@ public class filesController : Controller
 [HttpGet]
     public async Task<IActionResult> Index([Optional] string Id)
     {
+
+
+        
+        ViewBag.myProfile = false;
        if (string.IsNullOrWhiteSpace(Id))
         {
+            ViewBag.myProfile = true;
             System.Security.Claims.ClaimsPrincipal currentUser = this.User;
             Id = _userManager.GetUserId(User); // Get user id:
         }
-        var shop = await _userManager.FindByIdAsync(Id);
+        var shop = new users();
+
+        if (Id == "MyShop")
+        {
+            System.Security.Claims.ClaimsPrincipal currentUser = this.User;
+            Id = _userManager.GetUserId(User); // Get user id:
+             var barber = await _userManager.FindByIdAsync(Id);
+                 shop = await _userManager.FindByIdAsync(barber.barbersShop);
+
+        }else
+        {
+                     shop = await _userManager.FindByIdAsync(Id);
+        }
+        
         ProfileViewModel model = new ProfileViewModel();
         model.Id = shop.Id;
         model.ShopName = shop.shopName;
@@ -45,8 +63,11 @@ public class filesController : Controller
         model.Imgs = _context.files.Where(a => a.User.Id == Id).ToList();
         model.startTime = shop.sWorkTime;
         model.EndTime = shop.eWorkTime;
+        model.IsAvilable = shop.isAvilable;
+        model.ListServices = _context.services.Where(a => a.userId == shop.Id).ToList();
 
-        return View(model);
+
+        return View(nameof(Index), model);
     }
     // POST: files/Upload
     // To protect from overposting attacks, enable the specific properties you want to bind to.

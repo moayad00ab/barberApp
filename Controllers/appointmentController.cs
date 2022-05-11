@@ -34,13 +34,14 @@ namespace barber.Controllers
         [HttpGet]
         public async Task<ActionResult> Create(string id)
         {
+
+           
             var barber = await _userManager.FindByIdAsync(id);
             var shop = await _userManager.FindByIdAsync(barber.barbersShop);
-            IEnumerable<SelectListItem> serviceList = _context.services.Select(d => new SelectListItem
+            IList<SelectListItem> serviceList = _context.services.Where(s => s.userId == shop.Id).Select(d => new SelectListItem
             {
-                Value = d.description,
-                Text = d.description
-            });
+                Text = d.name + "   -    " + d.price.ToString() +"SAR"
+            }).ToList();
             var today = DateOnly.FromDateTime(DateTime.Now).ToString();
             List<appointment> tempAppointment = _context.appointment.Where(a => a.Date == today).ToList();
             
@@ -82,7 +83,7 @@ namespace barber.Controllers
                 {
                     Date = DateOnly.FromDateTime(DateTime.UtcNow).ToString(),
                     barberId = model.barber,
-                    service = ser,
+                  //  service = model.services,
                     User = await _userManager.FindByIdAsync(id),
                     appointApprove = model.appointApprove,
                     shopId = model.shop,

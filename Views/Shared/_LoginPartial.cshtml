@@ -13,12 +13,20 @@
         <a  class="nav-link text-dark" aria-readonly="true" title="Manage">Hello @User.Identity?.Name ready for a cut!</a>
     </li>
 
-
+@if (User.IsInRole("Customer") || User.IsInRole("Barber"))
+{
 <li class="nav-item">
          <a class="nav-link text-dark" asp-area="" asp-controller="appointment" asp-action="Index">appointments</a>
     </li>
+            }
     <li class="nav-item">
          <a class="nav-link text-dark" asp-area="" asp-controller="account" asp-action="Shops">Shops</a>
+    </li>
+            }
+
+            @if (User.IsInRole("Barber")){
+                <li class="nav-item">
+         <a class="nav-link text-dark" asp-area="" asp-controller="files" asp-action="Index" asp-route-id="MyShop">My shop</a>
     </li>
             }
 

@@ -158,6 +158,7 @@ public class accountController : Controller
             user.barbersShop = model.barbersShop;
             user.sWorkTime = model.sWorkTime;
             user.eWorkTime = model.eWorkTime;
+            user.isAvilable = model.isAvilable;
 
             var startTime = Convert.ToDateTime(user.sWorkTime);
             var endTime = Convert.ToDateTime(user.eWorkTime);
@@ -228,6 +229,7 @@ public class accountController : Controller
             editView.sWorkTime = user.sWorkTime;
             editView.eWorkTime = user.eWorkTime;
             editView.shopName = user.shopName;
+            editView.isAvilable = user.isAvilable;
             return View(editView);
         }
 
