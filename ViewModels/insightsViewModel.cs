@@ -10,11 +10,13 @@ namespace barber.ViewModels
     {
         [Display(Name = "Number of all appointments ")]
         public string numOfAllAppointment { get; set; }
-        [Display(Name = "Number of appointments for the last month")]
+        [Display(Name = "Number of appointments for the last 30 days")]
         public string numOfAppointmentsLast30 { get; set; }
 
         [Display(Name = "Remember me")]
-        public bool RememberMe { get; set; }
+        public List<appointment> appointInfo { get; set; }
+
+        
     }
 
 

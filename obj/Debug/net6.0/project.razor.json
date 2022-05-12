@@ -16431,6 +16431,11 @@
       "FilePath": "/Users/abdullahaldosri/Desktop/barberApp/Views/appointment/create.cshtml",
       "TargetPath": "Views\\appointment\\create.cshtml",
       "FileKind": "mvc"
+    },
+    {
+      "FilePath": "/Users/abdullahaldosri/Desktop/barberApp/Views/account/insights.cshtml",
+      "TargetPath": "Views\\account\\insights.cshtml",
+      "FileKind": "mvc"
     }
   ],
   "SerializationFormat": "0.2"

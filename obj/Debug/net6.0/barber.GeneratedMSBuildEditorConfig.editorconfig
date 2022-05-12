@@ -27,6 +27,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvYWNjb3VudC9FZGl0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
+[/Users/abdullahaldosri/Desktop/barberApp/Views/account/insights.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvYWNjb3VudC9pbnNpZ2h0cy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [/Users/abdullahaldosri/Desktop/barberApp/Views/account/listUsers.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvYWNjb3VudC9saXN0VXNlcnMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 

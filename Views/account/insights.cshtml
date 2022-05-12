@@ -1,0 +1,53 @@
+@model barber.ViewModels.insightsViewModel
+@{
+    ViewBag.Title = "Insights";
+}
+<div class="row justify-content-center">
+    <div class="col-md-4">
+            <div class="form-group">
+                <label asp-for="numOfAllAppointment"></label>
+                <input asp-for="numOfAllAppointment" class="form-control" readonly />
+            </div>
+             <div class="form-group">
+                <label asp-for="numOfAppointmentsLast30"></label>
+                <input asp-for="numOfAppointmentsLast30" class="form-control" readonly />
+            </div>
+    </div>
+</div>
+
+  <label class="col-form-label col-form-label-sm mt-4" for="inputSmall">Search by date</label>
+  <input for="date"class="form-control form-control-sm" type="text" placeholder=".form-control-sm" id="inputSmall" >
+  <button type="button" class="btn btn-outline-info" onclick="getdate()">Search by date</button>
+
+
+
+
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">Column heading</th>
+      <th scope="col">Column heading</th>
+      <th scope="col">Column heading</th>
+    </tr>
+  </thead>
+  <tbody>
+   
+    
+
+
+@foreach (var shopInfo in Model.appointInfo)
+{
+
+ <tr class="table-primary">
+      <td>@foreach(var serv in shopInfo.service){ @serv.name }</td>
+      <td>Column content</td>
+      <td>Column content</td>
+    </tr>
+
+   
+    <p>@shopInfo.Date</p>
+}
+</tbody>
+</table>
+@section Scripts {
+}

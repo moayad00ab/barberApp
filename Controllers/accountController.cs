@@ -345,16 +345,23 @@ public async Task<IActionResult> insights(){
             var id = _userManager.GetUserId(User); // Get user id:
             var shop =await _userManager.FindByIdAsync(id);
     List<appointment> numOfAppointments = _context.appointment.Where(a => a.shopId == shop.shopName).ToList();
+
+ List<appointment> numOfAppointments30 = _context.appointment.Where(a => a.shopId == shop.shopName).ToList();
+
     int count = 0;
     DateOnly currentDate = DateOnly.FromDateTime(DateTime.Now);
+
     for (int i = 0; i < 30; i++)
     {
-        
+      // last30DaysAppoint =  Convert.ToDateTime(currentDate).Subtract(TimeSpan.FromDays(1)).ToString("yyyy-mm-dd").ToString();
+       
     }
-    List<appointment> numOfAppointments30 = _context.appointment.Where(a => a.shopId == shop.shopName).ToList();
+
+
 
     insightsViewModel model = new insightsViewModel();
     model.numOfAllAppointment = numOfAppointments.Count.ToString();
+    model.appointInfo = _context.appointment.Where(a => a.shopId == shop.shopName).ToList();
     return View(model);
 }
 }
