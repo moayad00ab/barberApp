@@ -20,7 +20,16 @@
     </div>
     }
 
-    @if (User.IsInRole("BarberShop") || User.IsInRole("Barber"))
+    @if (User.IsInRole("Barber"))
+    {
+         <div class="form-group ">
+         
+            <input asp-for="barbersShop" class="form-control" type="hidden">
+            <span asp-validation-for="barbersShop" class="text-danger"></span>
+        
+    </div>
+    }
+     @if (User.IsInRole("BarberShop"))
     {
          <div class="form-group ">
         <label asp-for="shopName" class="col-form-label mt-4"></label>

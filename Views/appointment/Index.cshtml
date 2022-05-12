@@ -25,6 +25,7 @@
     </div>
     }
     <div class="card-footer">
+
         <form method="post" asp-action="Delete" asp-controller="app" asp-route-id="@app.appointID" class="mt-3">
             <input type="submit" name="Delete" value="Delete" onclick="return confirm('Are you sure you want to Delete The appointment?')" class="btn btn-danger"/>
         </form>
@@ -32,10 +33,8 @@
         <a asp-action="Edit" asp-controller="app" asp-route-id="@app.appointID" class="btn btn-primary">Edit</a>
     </div>
 </div>
-    }
-}
-else
-{
+}}
+else{
     <div class="card">
     <div class="card-header">
         No appointments created yet

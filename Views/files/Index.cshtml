@@ -6,7 +6,12 @@
 
 }
 
-@if (User.IsInRole("Barber"))
+@if (ViewBag.myProfile)
+{
+    <h1>@User.Identity.Name</h1>
+}
+
+@if ((User.IsInRole("Barber") && ViewBag.myProfile)|| (Model.ShopName == null && ViewBag.myProfile == false))
 {
   //  <h2>Are you avilable?</h2>
     // <div class="form-check form-switch">
@@ -20,7 +25,7 @@
         
     //  </div>
 
-      @if(Model.IsAvilable){
+    @if(Model.IsAvilable || @Model.ShopName == null){
           <h2 class="text-success">available</h2>
       }else
       {
@@ -28,7 +33,11 @@
 
       }
 }
+
+
 <h1>@Model.ShopName</h1>
+
+  
 @if (@Model.ShopName != null)
 {
 
@@ -47,12 +56,12 @@
 
 
 <hr />
-@if(User.IsInRole("Customer")){
+@if(User.IsInRole("Customer") && Model.ShopName == null && ViewBag.myProfile == false){
  <a asp-action="create" asp-controller="appointment" asp-route-id="@Model.Id" class="btn btn-outline-success">Book</a>
  }
 }
 
-@if (User.IsInRole("BarberShop"))
+@if (User.IsInRole("BarberShop") && ViewBag.myProfile == true)
             {
 
                  <a asp-action="create" asp-controller="service">
@@ -76,8 +85,8 @@
             <input type="submit" value="Edit profile" class="btn btn-outline-dark" />
         </a>
 }
-<br>
-@if (@ViewBag.myProfile == false || User.IsInRole("BarberShop") && Model.ShopName == null)
+<br><br>
+@if ((@ViewBag.myProfile == true && User.IsInRole("BarberShop")) || (@ViewBag.myProfile == false && Model.Barbers == null))
 {
 <h2>Barbers</h2>
 }
@@ -90,7 +99,7 @@
                     <div class="card text-white bg-dark mb-3" style="max-width: 20rem;">
   <div class="card-header">@barbers.fName @barbers.lName @if(barbers.isAvilable) {<p class = "text-success">● avilable</p>}else {<p class = "text-danger">● Not avilable</p>}</div>
  
- @if(User.IsInRole("Customer")){
+ @if(User.IsInRole("Customer") && barbers.isAvilable){
  <a asp-action="create" asp-controller="appointment" asp-route-id="@barbers.Id" class="btn btn-outline-success">Book</a>
  }
 
@@ -110,7 +119,7 @@
 <br>
 
 <br>
-@if (User.IsInRole("BarberShop") || @Model.ShopName != null)
+@if ((User.IsInRole("BarberShop") && ViewBag.myProfile) || @Model.ShopName != null)
 {
 <h2>Services </h2>
 <table class="table table-hover">
@@ -137,11 +146,14 @@
       <td>@services.price.00 SAR</td>
       <td>@services.time min</td>
       <td> 
+          @if(User.IsInRole("BarberShop"))
+          {
         <form method="post" asp-action="Delete" asp-controller="service" asp-route-id="@services.Id" class="mt-3">
             <input type="submit" name="Delete" value="Delete" onclick="return confirm('Are you sure you want to Delete @services.name service?')" class="btn btn-danger"/>
         </form>
         <br />
         <a asp-action="Edit" asp-controller="service" asp-route-id="@services.Id" class="btn btn-primary">Edit</a>
+          }
     </td>
     </tr>
       }
@@ -161,22 +173,22 @@
 </table>
 
 }
-@if (User.IsInRole("BarberShop") || @Model.ShopName != null)
+@if ((User.IsInRole("BarberShop") && ViewBag.myProfile) || @Model.ShopName != null)
 {
 <h2> Shop images</h2>
 
 
 }
-@if (User.IsInRole("Barber"))
+@if ((User.IsInRole("Barber") && ViewBag.myProfile ) || (@Model.ShopName == null && ViewBag.myProfile == false))
 {
 <h2> Previous work</h2>
 
 
 }
 
-@if (User.IsInRole("Customer") && @Model.ShopName == null)
+@if (User.IsInRole("Customer") && ViewBag.myProfile)
 {
-    <p class="muted" style="left: 200px; top: 30%; text-transform: uppercase; padding-top: 3%;"> My cuts</p>
+    <h2> My cuts</h2>
 
 }
 

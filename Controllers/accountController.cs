@@ -230,6 +230,7 @@ public class accountController : Controller
             editView.eWorkTime = user.eWorkTime;
             editView.shopName = user.shopName;
             editView.isAvilable = user.isAvilable;
+            editView.barbersShop = user.barbersShop;
             return View(editView);
         }
 
@@ -247,6 +248,8 @@ public class accountController : Controller
         }
         else
         {
+
+            
             if (user.barbersShop == null)
             {
                 _context.slot.RemoveRange(_context.slot.Where(x => x.User.Id == user.Id));
@@ -260,6 +263,21 @@ public class accountController : Controller
                     sqlCmd.Parameters.AddWithValue("@Id", id);
                     sqlCmd.ExecuteNonQuery();
                 }
+            }
+            if (user.shopName == null)
+            {
+                _context.slot.RemoveRange(_context.slot.Where(x => x.User.Id == user.Id));
+
+                 using (SqlConnection sqlCon = new SqlConnection(_configuration.GetConnectionString("DbConnection")))
+                {
+                    sqlCon.Open();
+
+                    string query = "DELETE FROM AspNetUsers WHERE barbersShop = @Id";
+                    SqlCommand sqlCmd = new SqlCommand(query, sqlCon);
+                    sqlCmd.Parameters.AddWithValue("@Id", id);
+                    sqlCmd.ExecuteNonQuery();
+                }
+
             }
             var result = await _userManager.DeleteAsync(user);
             if (result.Succeeded)
@@ -341,6 +359,8 @@ public class accountController : Controller
 }
 [HttpGet]
 public async Task<IActionResult> insights(){
+
+    
      System.Security.Claims.ClaimsPrincipal currentUser = this.User;
             var id = _userManager.GetUserId(User); // Get user id:
             var shop =await _userManager.FindByIdAsync(id);
@@ -356,7 +376,7 @@ public async Task<IActionResult> insights(){
       // last30DaysAppoint =  Convert.ToDateTime(currentDate).Subtract(TimeSpan.FromDays(1)).ToString("yyyy-mm-dd").ToString();
        
     }
-
+ViewBag.DynamicPricing = DynamicPricing(shop);
 
 
     insightsViewModel model = new insightsViewModel();
@@ -364,6 +384,35 @@ public async Task<IActionResult> insights(){
     model.appointInfo = _context.appointment.Where(a => a.shopId == shop.shopName).ToList();
     return View(model);
 }
+
+public string DynamicPricing(users shop)
+        {
+            
+
+                var today = DateOnly.FromDateTime(DateTime.Today);
+                var oneWeek = today.AddDays(-7);
+                var twoWeek = today.AddDays(-14);
+                var NumOfAppoint7 = _context.appointment.Where(a => a.Date == oneWeek.ToString() && a.shopId == shop.shopName).Count();
+               var NumOfAppoint14 = _context.appointment.Where(a => a.Date == twoWeek.ToString() && a.shopId ==  shop.shopName).Count();
+               var percentage = 0;
+
+                if (NumOfAppoint14 != 0)
+                {
+                percentage = (NumOfAppoint7/NumOfAppoint14)*100;
+                }
+               
+               if(NumOfAppoint7 == 0)
+               {
+                percentage = 100;
+               }
+
+               if (NumOfAppoint7<NumOfAppoint14)
+               {
+                   return "We suggest that you to add an offer for today, because your appointments has been decreased by: %"+ percentage ;
+               }
+
+            return null;
+        }
 }
 
 
