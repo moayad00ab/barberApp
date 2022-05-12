@@ -15,11 +15,15 @@
         <h5 class="card-title">Shop: @app.shopId</h5>
         <h5 class="card-title">Barber: @app.barberId</h5>
         <h5 class="card-title">Date: @app.Date</h5>
+          <h5 class="card-title">Services: @app.service</h5>
+          <h5 class="card-title">Total price: @app.totalPrice.00 SAR</h5>
         <h5 class="card-title">Approval: @app.appointApprove</h5>
+        <h5 class="card-title">Expected service duration: @app.serviceDuration min</h5>
         <h5 class="card-title">Reservation time from: @app.stime</h5>
         <h5 class="card-title">To: @app.etime</h5>
+
     </div>
-   
+    }
     <div class="card-footer">
         <form method="post" asp-action="Delete" asp-controller="app" asp-route-id="@app.appointID" class="mt-3">
             <input type="submit" name="Delete" value="Delete" onclick="return confirm('Are you sure you want to Delete The appointment?')" class="btn btn-danger"/>

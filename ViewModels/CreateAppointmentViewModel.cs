@@ -25,9 +25,7 @@ public class CreateAppointmentViewModel
     [Display(Name = "Approval")]
     public bool appointApprove { get; set; }
     [Display(Name = "Service")]
-    public IList<SelectListItem> services { get; set; }
-    [Required(ErrorMessage = "please select service")]
-    public string service {get; set;}
+    public List<services> services { get; set; }
     public string stime {get; set;}
 
 

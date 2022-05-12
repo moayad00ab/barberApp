@@ -19,4 +19,5 @@ namespace barber.Models;
         public string userId { get; set; }
         public string time { get; set; }
         List<services> listServices { get; set; }
+        public bool isChecked { get; set; }
     }

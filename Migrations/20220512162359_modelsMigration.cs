@@ -62,6 +62,23 @@ namespace barber.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "services",
+                columns: table => new
+                {
+                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    name = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    description = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    price = table.Column<float>(type: "real", nullable: false),
+                    userId = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    time = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    isChecked = table.Column<bool>(type: "bit", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_services", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "AspNetRoleClaims",
                 columns: table => new
                 {
@@ -92,6 +109,10 @@ namespace barber.Migrations
                     UserId = table.Column<string>(type: "nvarchar(450)", nullable: true),
                     shopId = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     appointApprove = table.Column<bool>(type: "bit", nullable: false),
+                    service = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    totalPrice = table.Column<float>(type: "real", nullable: false),
+                    serviceDuration = table.Column<int>(type: "int", nullable: false),
+                    offerPrice = table.Column<float>(type: "real", nullable: false),
                     payStatus = table.Column<bool>(type: "bit", nullable: false),
                     stime = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     etime = table.Column<string>(type: "nvarchar(max)", nullable: true)
@@ -291,28 +312,6 @@ namespace barber.Migrations
                         principalColumn: "Id");
                 });
 
-            migrationBuilder.CreateTable(
-                name: "services",
-                columns: table => new
-                {
-                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    name = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    description = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    price = table.Column<float>(type: "real", nullable: false),
-                    userId = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    time = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    appointmentappointID = table.Column<string>(type: "nvarchar(450)", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_services", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_services_appointment_appointmentappointID",
-                        column: x => x.appointmentappointID,
-                        principalTable: "appointment",
-                        principalColumn: "appointID");
-                });
-
             migrationBuilder.CreateIndex(
                 name: "IX_appointment_UserId",
                 table: "appointment",
@@ -373,11 +372,6 @@ namespace barber.Migrations
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_services_appointmentappointID",
-                table: "services",
-                column: "appointmentappointID");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_slot_slotid",
                 table: "slot",
                 column: "slotid");
@@ -395,6 +389,9 @@ namespace barber.Migrations
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropTable(
+                name: "appointment");
+
             migrationBuilder.DropTable(
                 name: "AspNetRoleClaims");
 
@@ -430,9 +427,6 @@ namespace barber.Migrations
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
-
-            migrationBuilder.DropTable(
-                name: "appointment");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");

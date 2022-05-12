@@ -44,14 +44,27 @@ namespace barber.Migrations
                     b.Property<string>("etime")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<float>("offerPrice")
+                        .HasColumnType("real");
+
                     b.Property<bool>("payStatus")
                         .HasColumnType("bit");
+
+                    b.Property<string>("service")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("serviceDuration")
+                        .HasColumnType("int");
 
                     b.Property<string>("shopId")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("stime")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<float>("totalPrice")
+                        .HasColumnType("real");
 
                     b.HasKey("appointID");
 
@@ -137,11 +150,11 @@ namespace barber.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<string>("appointmentappointID")
-                        .HasColumnType("nvarchar(450)");
-
                     b.Property<string>("description")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("isChecked")
+                        .HasColumnType("bit");
 
                     b.Property<string>("name")
                         .HasColumnType("nvarchar(max)");
@@ -156,8 +169,6 @@ namespace barber.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("appointmentappointID");
 
                     b.ToTable("services");
                 });
@@ -479,13 +490,6 @@ namespace barber.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("barber.Models.services", b =>
-                {
-                    b.HasOne("barber.appointment", null)
-                        .WithMany("service")
-                        .HasForeignKey("appointmentappointID");
-                });
-
             modelBuilder.Entity("barber.Models.slot", b =>
                 {
                     b.HasOne("barber.users", "User")
@@ -557,11 +561,6 @@ namespace barber.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("barber.appointment", b =>
-                {
-                    b.Navigation("service");
                 });
 
             modelBuilder.Entity("barber.Models.slot", b =>

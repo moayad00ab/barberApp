@@ -26,7 +26,11 @@ public class appointment
     public bool appointApprove { get; set; }
     [Display(Name = "Service")]
     [Required(ErrorMessage = "please select service")]
-    public List<services> service { get; set; }
+    public string service { get; set; }
+    public float totalPrice { get; set; }
+    public int serviceDuration { get; set; }
+    public float offerPrice { get; set; }
+
     [Display(Name = "Payment")]
     public bool payStatus { get; set; }
     public string stime { get; set; }
