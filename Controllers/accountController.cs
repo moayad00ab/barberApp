@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Runtime.InteropServices;
 using System.Security.Claims;
 using barber.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace barber.Controllers;
 
@@ -358,14 +359,19 @@ public class accountController : Controller
    return View(vm);   
 }
 [HttpGet]
-public async Task<IActionResult> insights(){
-
-    
+public async Task<IActionResult> insights([Optional] string search){
      System.Security.Claims.ClaimsPrincipal currentUser = this.User;
             var id = _userManager.GetUserId(User); // Get user id:
             var shop =await _userManager.FindByIdAsync(id);
-    List<appointment> numOfAppointments = _context.appointment.Where(a => a.shopId == shop.shopName).ToList();
-
+            var query = _context.appointment.Where(a => a.shopId == shop.shopName);
+    List<appointment> numOfAppointments = _context.appointment.Where(a => a.shopId == shop.shopName).ToList();    
+                ViewData["Search"] = search;
+            if (!String.IsNullOrEmpty(search))
+            {
+                query = query.Where(x => x.Date.Contains(search) && x.shopId == shop.shopName);
+            }
+            
+    ViewBag.DynamicPricing = DynamicPricing(shop);
  List<appointment> numOfAppointments30 = _context.appointment.Where(a => a.shopId == shop.shopName).ToList();
 
     int count = 0;
@@ -376,15 +382,10 @@ public async Task<IActionResult> insights(){
       // last30DaysAppoint =  Convert.ToDateTime(currentDate).Subtract(TimeSpan.FromDays(1)).ToString("yyyy-mm-dd").ToString();
        
     }
-ViewBag.DynamicPricing = DynamicPricing(shop);
 
-
-    insightsViewModel model = new insightsViewModel();
-    model.numOfAllAppointment = numOfAppointments.Count.ToString();
-    model.appointInfo = _context.appointment.Where(a => a.shopId == shop.shopName).ToList();
-    return View(model);
+    ViewBag.appointNum = numOfAppointments.Count.ToString();
+    return View(await query.AsNoTracking().ToListAsync());
 }
-
 public string DynamicPricing(users shop)
         {
             
