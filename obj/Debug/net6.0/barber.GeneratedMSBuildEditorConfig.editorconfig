@@ -8,121 +8,121 @@ build_property.PlatformNeutralAssembly =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = barber
 build_property.RootNamespace = barber
-build_property.ProjectDir = /Users/abdullahaldosri/Desktop/barberApp/
+build_property.ProjectDir = /Users/abdullahaldosri/Desktop/barberApp 2/
 build_property.RazorLangVersion = 6.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = /Users/abdullahaldosri/Desktop/barberApp
+build_property.MSBuildProjectDirectory = /Users/abdullahaldosri/Desktop/barberApp 2
 build_property._RazorSourceGeneratorDebug = 
 
-[/Users/abdullahaldosri/Desktop/barberApp/Areas/Identity/Pages/_ViewStart.cshtml]
+[/Users/abdullahaldosri/Desktop/barberApp 2/Areas/Identity/Pages/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXMvSWRlbnRpdHkvUGFnZXMvX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/abdullahaldosri/Desktop/barberApp/Views/account/barbers.cshtml]
+[/Users/abdullahaldosri/Desktop/barberApp 2/Views/account/barbers.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvYWNjb3VudC9iYXJiZXJzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/abdullahaldosri/Desktop/barberApp/Views/account/Edit.cshtml]
+[/Users/abdullahaldosri/Desktop/barberApp 2/Views/account/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvYWNjb3VudC9FZGl0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/abdullahaldosri/Desktop/barberApp/Views/account/insights.cshtml]
+[/Users/abdullahaldosri/Desktop/barberApp 2/Views/account/insights.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvYWNjb3VudC9pbnNpZ2h0cy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/abdullahaldosri/Desktop/barberApp/Views/account/listUsers.cshtml]
+[/Users/abdullahaldosri/Desktop/barberApp 2/Views/account/listUsers.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvYWNjb3VudC9saXN0VXNlcnMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/abdullahaldosri/Desktop/barberApp/Views/account/login.cshtml]
+[/Users/abdullahaldosri/Desktop/barberApp 2/Views/account/login.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvYWNjb3VudC9sb2dpbi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/abdullahaldosri/Desktop/barberApp/Views/account/Register.cshtml]
+[/Users/abdullahaldosri/Desktop/barberApp 2/Views/account/Register.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvYWNjb3VudC9SZWdpc3Rlci5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/abdullahaldosri/Desktop/barberApp/Views/account/settings.cshtml]
+[/Users/abdullahaldosri/Desktop/barberApp 2/Views/account/settings.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvYWNjb3VudC9zZXR0aW5ncy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/abdullahaldosri/Desktop/barberApp/Views/account/Shops.cshtml]
+[/Users/abdullahaldosri/Desktop/barberApp 2/Views/account/Shops.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvYWNjb3VudC9TaG9wcy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/abdullahaldosri/Desktop/barberApp/Views/appointment/create.cshtml]
+[/Users/abdullahaldosri/Desktop/barberApp 2/Views/appointment/create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvYXBwb2ludG1lbnQvY3JlYXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/abdullahaldosri/Desktop/barberApp/Views/appointment/Index.cshtml]
+[/Users/abdullahaldosri/Desktop/barberApp 2/Views/appointment/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvYXBwb2ludG1lbnQvSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/abdullahaldosri/Desktop/barberApp/Views/files/Index.cshtml]
+[/Users/abdullahaldosri/Desktop/barberApp 2/Views/files/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvZmlsZXMvSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/abdullahaldosri/Desktop/barberApp/Views/files/Upload.cshtml]
+[/Users/abdullahaldosri/Desktop/barberApp 2/Views/files/Upload.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvZmlsZXMvVXBsb2FkLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/abdullahaldosri/Desktop/barberApp/Views/Home/Index.cshtml]
+[/Users/abdullahaldosri/Desktop/barberApp 2/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9JbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/abdullahaldosri/Desktop/barberApp/Views/Home/Privacy.cshtml]
+[/Users/abdullahaldosri/Desktop/barberApp 2/Views/Home/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9Qcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/abdullahaldosri/Desktop/barberApp/Views/offer/create.cshtml]
+[/Users/abdullahaldosri/Desktop/barberApp 2/Views/offer/create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3Mvb2ZmZXIvY3JlYXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/abdullahaldosri/Desktop/barberApp/Views/offer/Index.cshtml]
+[/Users/abdullahaldosri/Desktop/barberApp 2/Views/offer/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3Mvb2ZmZXIvSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/abdullahaldosri/Desktop/barberApp/Views/Roles/CreateRole.cshtml]
+[/Users/abdullahaldosri/Desktop/barberApp 2/Views/Roles/CreateRole.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvUm9sZXMvQ3JlYXRlUm9sZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/abdullahaldosri/Desktop/barberApp/Views/Roles/EditRole.cshtml]
+[/Users/abdullahaldosri/Desktop/barberApp 2/Views/Roles/EditRole.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvUm9sZXMvRWRpdFJvbGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/abdullahaldosri/Desktop/barberApp/Views/Roles/ListRoles.cshtml]
+[/Users/abdullahaldosri/Desktop/barberApp 2/Views/Roles/ListRoles.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvUm9sZXMvTGlzdFJvbGVzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/abdullahaldosri/Desktop/barberApp/Views/service/create.cshtml]
+[/Users/abdullahaldosri/Desktop/barberApp 2/Views/service/create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3Mvc2VydmljZS9jcmVhdGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/abdullahaldosri/Desktop/barberApp/Views/service/Index.cshtml]
+[/Users/abdullahaldosri/Desktop/barberApp 2/Views/service/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3Mvc2VydmljZS9JbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/abdullahaldosri/Desktop/barberApp/Views/Shared/Error.cshtml]
+[/Users/abdullahaldosri/Desktop/barberApp 2/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL0Vycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/abdullahaldosri/Desktop/barberApp/Views/Shared/_LoginPartial.cshtml]
+[/Users/abdullahaldosri/Desktop/barberApp 2/Views/Shared/_LoginPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL19Mb2dpblBhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/abdullahaldosri/Desktop/barberApp/Views/Shared/_ValidationScriptsPartial.cshtml]
+[/Users/abdullahaldosri/Desktop/barberApp 2/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL19WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/abdullahaldosri/Desktop/barberApp/Views/_ViewImports.cshtml]
+[/Users/abdullahaldosri/Desktop/barberApp 2/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/abdullahaldosri/Desktop/barberApp/Views/_ViewStart.cshtml]
+[/Users/abdullahaldosri/Desktop/barberApp 2/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/abdullahaldosri/Desktop/barberApp/Views/Shared/_Layout.cshtml]
+[/Users/abdullahaldosri/Desktop/barberApp 2/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL19MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-nvzy80766k
