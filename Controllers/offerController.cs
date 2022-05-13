@@ -28,9 +28,26 @@ namespace barber.Controllers;
             //check if incoming model object is valid
             if (ModelState.IsValid)
             {
-                offer = new offers {description = model.description, User = model.User};
+                System.Security.Claims.ClaimsPrincipal currentUser = this.User;
+                var id = _userManager.GetUserId(User); // Get user id:
+
+                offer = new offers {description = model.description, User = await _userManager.FindByIdAsync(id)};
                 var result = _context.offers.Add(offer);
                await _context.SaveChangesAsync();  
+               var servicePrice = _context.services.Where(a => a.userId == id).ToList();
+                if (Int32.Parse(model.description) > 0)
+                {
+                    
+                
+               foreach (var service in servicePrice)
+               {
+                   service.price = (1-(Int32.Parse(model.description)/100))*service.price;
+                        _context.services.Update(service);
+                                       await _context.SaveChangesAsync();  
+
+
+               }
+                }
             }
             return View("Index", _context.offers.ToList());
         }
