@@ -104,9 +104,11 @@ namespace barber.Migrations
                 columns: table => new
                 {
                     appointID = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    barberName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     barberId = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Date = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     UserId = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    shopName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     shopId = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     appointApprove = table.Column<bool>(type: "bit", nullable: false),
                     service = table.Column<string>(type: "nvarchar(max)", nullable: false),

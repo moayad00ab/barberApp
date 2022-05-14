@@ -13,6 +13,7 @@ public class appointment
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public string appointID { get; set; }
     [Display(Name = "Barber")]
+    public string barberName { get; set; }
     public string barberId { get; set; }
     [Display(Name = "Date")]
     [Required(ErrorMessage = "please choose date")]
@@ -21,6 +22,7 @@ public class appointment
     [Display(Name = "Customer")]
     public users User { get; set; }
     [Display(Name = "Barber shop")]
+    public string shopName { get; set; }
     public string shopId { get; set; }
     [Display(Name = "Approval")]
     public bool appointApprove { get; set; }

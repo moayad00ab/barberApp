@@ -8,12 +8,10 @@
     foreach (var app in Model)
     {
         <div class="card mb-3">
-    <div class="card-header">
-        
-    </div>
     <div class="card-body">
-        <h5 class="card-title">Shop: @app.shopId</h5>
-        <h5 class="card-title">Barber: @app.barberId</h5>
+        <h5 class="card-title">Customer: @app.User.fName @app.User.lName</h5>
+        <h5 class="card-title">Shop: @app.shopName</h5>
+        <h5 class="card-title">Barber: @app.barberName</h5>
         <h5 class="card-title">Date: @app.Date</h5>
           <h5 class="card-title">Services: @app.service</h5>
           <h5 class="card-title">Total price: @app.totalPrice.00 SAR</h5>
@@ -21,16 +19,31 @@
         <h5 class="card-title">Expected service duration: @app.serviceDuration min</h5>
         <h5 class="card-title">Reservation time from: @app.stime</h5>
         <h5 class="card-title">To: @app.etime</h5>
-
     </div>
-    }
+    
     <div class="card-footer">
-
-        <form method="post" asp-action="Delete" asp-controller="app" asp-route-id="@app.appointID" class="mt-3">
-            <input type="submit" name="Delete" value="Delete" onclick="return confirm('Are you sure you want to Delete The appointment?')" class="btn btn-danger"/>
+         @if (!app.appointApprove && User.IsInRole("Barber"))
+        {
+            <form asp-action="approve" asp-controller="appointment" asp-route-id="@app.appointID">
+        <input type="submit" value="Approve appointment" class="btn btn-primary" />
         </form>
+        }
+        @if(app.appointApprove && User.IsInRole("Barber"))
+        {
+            <h5 class="card-title">Appointment is approved</h5>
+ 
+        }
+        @if (!app.appointApprove && User.IsInRole("Customer"))
+        {
+           <form method="post" asp-action="Delete" asp-controller="appointment" asp-route-id="@app.appointID" class="mt-3">
+            <input type="submit" name="Delete" value="Cancel" onclick="return confirm('Are you sure you want to Delete The appointment?')" class="btn btn-danger"/>
+        </form> 
+        }
+        @if(app.appointApprove && User.IsInRole("Customer")){
+            <h5 class="card-title">Appointment is approved</h5>
+        }
+    }
         <br />
-        <a asp-action="Edit" asp-controller="app" asp-route-id="@app.appointID" class="btn btn-primary">Edit</a>
     </div>
 </div>
 }}

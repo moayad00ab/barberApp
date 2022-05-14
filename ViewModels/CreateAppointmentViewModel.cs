@@ -18,7 +18,7 @@ public class CreateAppointmentViewModel
     [BindProperty, DisplayFormat(DataFormatString = "{yyyy-MM-dd}", ApplyFormatInEditMode = true)]
     public DateOnly Date { get; set; }
     [Display(Name = "Customer")]
-    public users User { get; set; }
+    public string customerId { get; set; }
     public string shopId { get; set; }
     [Display(Name = "Barber shop: ")]
     public string shop { get; set; }

@@ -363,16 +363,16 @@ public async Task<IActionResult> insights([Optional] string search){
      System.Security.Claims.ClaimsPrincipal currentUser = this.User;
             var id = _userManager.GetUserId(User); // Get user id:
             var shop =await _userManager.FindByIdAsync(id);
-            var query = _context.appointment.Where(a => a.shopId == shop.shopName);
-    List<appointment> numOfAppointments = _context.appointment.Where(a => a.shopId == shop.shopName).ToList();    
+            var query = _context.appointment.Where(a => a.shopId == shop.Id);
+    List<appointment> numOfAppointments = _context.appointment.Where(a => a.shopId == shop.Id).ToList();    
                 ViewData["Search"] = search;
             if (!String.IsNullOrEmpty(search))
             {
-                query = query.Where(x => x.Date.Contains(search) && x.shopId == shop.shopName);
+                query = query.Where(x => x.Date.Contains(search) && x.shopId == shop.Id);
             }
             
     ViewBag.DynamicPricing = DynamicPricing(shop);
- List<appointment> numOfAppointments30 = _context.appointment.Where(a => a.shopId == shop.shopName).ToList();
+ List<appointment> numOfAppointments30 = _context.appointment.Where(a => a.shopId == shop.Id).ToList();
 
     int count = 0;
     DateOnly currentDate = DateOnly.FromDateTime(DateTime.Now);
@@ -393,8 +393,8 @@ public string DynamicPricing(users shop)
                 var today = DateOnly.FromDateTime(DateTime.Today);
                 var oneWeek = today.AddDays(-7);
                 var twoWeek = today.AddDays(-14);
-                var NumOfAppoint7 = _context.appointment.Where(a => a.Date == oneWeek.ToString() && a.shopId == shop.shopName).Count();
-               var NumOfAppoint14 = _context.appointment.Where(a => a.Date == twoWeek.ToString() && a.shopId ==  shop.shopName).Count();
+                var NumOfAppoint7 = _context.appointment.Where(a => a.Date == oneWeek.ToString() && a.shopId == shop.Id).Count();
+               var NumOfAppoint14 = _context.appointment.Where(a => a.Date == twoWeek.ToString() && a.shopId ==  shop.Id).Count();
                var percentage = 0;
 
                 if (NumOfAppoint14 != 0)

@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "/Users/abdullahaldosri/Desktop/barberApp 2 2/barber.csproj": {}
+    "/home/moayad/Desktop/barber/barber.csproj": {}
   },
   "projects": {
-    "/Users/abdullahaldosri/Desktop/barberApp 2 2/barber.csproj": {
+    "/home/moayad/Desktop/barber/barber.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/abdullahaldosri/Desktop/barberApp 2 2/barber.csproj",
+        "projectUniqueName": "/home/moayad/Desktop/barber/barber.csproj",
         "projectName": "barber",
-        "projectPath": "/Users/abdullahaldosri/Desktop/barberApp 2 2/barber.csproj",
-        "packagesPath": "/Users/abdullahaldosri/.nuget/packages/",
-        "outputPath": "/Users/abdullahaldosri/Desktop/barberApp 2 2/obj/",
+        "projectPath": "/home/moayad/Desktop/barber/barber.csproj",
+        "packagesPath": "/home/moayad/.nuget/packages/",
+        "outputPath": "/home/moayad/Desktop/barber/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/Users/abdullahaldosri/.nuget/NuGet/NuGet.Config"
+          "/home/moayad/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net6.0"
@@ -93,7 +93,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/6.0.101/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/6.0.101/RuntimeIdentifierGraph.json"
         }
       }
     }

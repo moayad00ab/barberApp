@@ -27,9 +27,13 @@ namespace barber.Controllers
             _userManager = userManager;
         }
         [HttpGet]
-        public ActionResult Index()
+        public async Task<ActionResult> Index()
         {
-            return View(_context.appointment.ToList());
+             System.Security.Claims.ClaimsPrincipal currentUser = this.User;
+                var id = _userManager.GetUserId(User); // Get user id:
+                var user = await _userManager.FindByIdAsync(id);
+                var appointments = _context.appointment.Where(a => a.barberId == user.Id || a.User.Id == user.Id);
+            return View(appointments.ToList());
         }
         [HttpGet]
         public async Task<ActionResult> Create(string id)
@@ -60,12 +64,15 @@ namespace barber.Controllers
             }
             }
             ViewBag.timeList = new SelectList(barberSlots, nameof(timeList.id), nameof(timeList.strtime));
+             System.Security.Claims.ClaimsPrincipal currentUser = this.User;
+                var Id = _userManager.GetUserId(User); // Get user id:
             var model = new CreateAppointmentViewModel();
             model.services = serviceList;
             model.barberId = barber.Id;
             model.shopId = barber.barbersShop;
             model.barber = barber.fName + " " + barber.lName;
             model.shop = shop.shopName;
+            model.customerId = Id;
             return View(model);
         }
         [HttpPost]
@@ -89,10 +96,12 @@ namespace barber.Controllers
                 var obj = new appointment()
                 {
                     Date = DateOnly.FromDateTime(DateTime.UtcNow).ToString(),
-                    barberId = model.barber,
-                    User = await _userManager.FindByIdAsync(id),
+                    barberId = model.barberId,
+                    barberName = model.barber,
+                    User = await _userManager.FindByIdAsync(model.customerId),
                     appointApprove = model.appointApprove,
-                    shopId = model.shop,
+                    shopId = model.shopId,
+                    shopName = model.shop,
                     stime = strtimeObj.strtime,
                     etime = endTime.ToString("hh:mm tt")
                     
@@ -123,5 +132,23 @@ namespace barber.Controllers
             return service;
         }
 
-    }
+     [HttpPost]
+        public async Task<ActionResult> approve(string id)
+        {
+            var appointment = await _context.appointment.FindAsync(id);
+            appointment.appointApprove = true;
+            _context.Update(appointment);
+           await _context.SaveChangesAsync();
+           return RedirectToAction("Index");
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Delete(string id)
+        {
+            var appointment = await _context.appointment.FindAsync(id);
+            _context.appointment.Remove(appointment);
+            await _context.SaveChangesAsync();
+            return RedirectToAction("Index");
+        }
+}
 }
