@@ -20,11 +20,16 @@ namespace barber;
         public float rating { get; set; }
         public string sWorkTime { get; set; }
         public string eWorkTime { get; set; }
-        [NotMapped]
-        public string [] daysWork { get; set; }
+        
         public bool isAvilable { get; set; }
 
          public string userType { get; set; }
+
+         public bool isShopAvailable { get; set; }
+
+        public int numOfTotalAppoint { get; set; }
+
+
 
 
     }

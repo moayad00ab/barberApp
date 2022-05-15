@@ -12,9 +12,13 @@
         <h5 class="card-title">@user.shopName </h5>
     </div>
     <div class="card-footer">
+        @if(user.isShopAvailable){
         <a asp-action="Index" asp-controller="files" asp-route-id="@user.Id" class="btn btn-primary">
            View shop
         </a>
+    }else{
+        <h4 class="danger">Shop is closed</h4>
+    }
     </div>
     @if (User.IsInRole("Admin"))
             {

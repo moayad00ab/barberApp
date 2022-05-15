@@ -2,32 +2,78 @@
   @{
     ViewBag.Title = "Insights";
 }
-<div class="row justify-content-center">
-    <div class="col-md-4">
-            <div class="form-group">
-                <label >Number of all appointments</label>
-                <input type="text" class="btn-btn-secondary" placeholder="@ViewBag.appointNum" />
-            </div>
-            
-    </div>
+
+
+<div class="card text-white bg-primary mb-3" style="max-width: 20rem;">
+  <div class="card-header">Number of all appointments</div>
+  <div class="card-body">
+    <h4 class="card-title">@ViewBag.appointNum</h4>
+  </div>
 </div>
+<div class="card text-white bg-primary mb-3" style="max-width: 20rem;">
+  <div class="card-header">Number of appointments in last 30 days</div>
+  <div class="card-body">
+    <h4 class="card-title">@ViewBag.last30Appoint</h4>
+  </div>
+</div>
+  <div class="card bg-secondary mb-3" style="max-width: 20rem;">
+  <div class="card-header">Total income</div>
+  <div class="card-body">
+    <h4 class="card-title">@ViewBag.TIncome</h4>
+  </div>
+</div>
+
+
+
+@for (int i = 0; i < ViewBag.barbers.Count; i++)
+{
   
+
+  <div class="accordion" id="accordionExample">
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="headingOne">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+        @ViewBag.barbers[i].fName @ViewBag.barbers[i].lName
+      </button>
+    </h2>
+  <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample" style="">
+      <div class="accordion-body">
+        <strong>@ViewBag.AppoinForBarbers[i]</strong> 
+      </div>
+    </div>
+  </div>
+  </div>
+
+}
+
+<div class="card bg-secondary mb-3" style="max-width: 20rem;">
+  <div class="card-header">last 30 days income</div>
+  <div class="card-body">
+    <h4 class="card-title">@ViewBag.last30Income</h4>
+  </div>
+</div>
   <form method="get" asp-controller="account" asp-action="insights">
     <br />
-    <input type="search" placeholder="Search" value="@ViewData["Search"]" name="search" style="width:200px;" />
-    <input type="submit" value="Search" class="btn-btn-secondary" />  |
-    <a asp-action="insights">Get all appointments</a>
-</form>
+    <div class="input-group mb-3"></div>
+    <input type="search" class="form-control" placeholder="Search" aria-label="search" aria-describedby="button-addon2" value="@ViewData["Search"]" name="search"  />
+    <input type="submit" value="Search" class="btn btn-outline-primary" id="button-addon2"/>
+     <button asp-action="insights" type="submit" class="btn btn-outline-secondary">Reset</button> 
+          <button  type="submit" class="btn btn-outline-info" onclick="help()">Help?</button> 
 
+    </div> 
+
+</form>
 
 
 
 <table class="table table-hover">
   <thead>
     <tr>
-      <th scope="col">Column heading</th>
-      <th scope="col">Column heading</th>
-      <th scope="col">Column heading</th>
+      <th scope="col">Date</th>
+      <th scope="col">Barber</th>
+      <th scope="col">Service</th>
+      <th scope="col">Barber's Approval</th>
+      <th scope="col">Total Price</th>
     </tr>
   </thead>
   <tbody>
@@ -41,15 +87,24 @@
 {
 
  <tr class="table-primary">
+      <td>@shopInfo.Date</td>
+      <td>@shopInfo.barberName</td>
       <td>@shopInfo.service</td>
-      <td>Column content</td>
-      <td>Column content</td>
+      <td>@shopInfo.appointApprove</td>
+      <td>@shopInfo.totalPrice SAR</td>
     </tr>
 
    
-    <p>@shopInfo.Date</p>
+    
 }
 </tbody>
 </table>
 @section Scripts {
+ 
+  <script>
+
+function help() {
+    window.alert("You can search either by batber's name or by date \n if you want to search by date you can search by day enter just a write in the in following format: MM/DD \n \n or if want to search by month write in the in following format: MM/YYYY \n\n and please clear the input before reset ");
+}
+  </script>
 }

@@ -64,6 +64,7 @@ public class filesController : Controller
         model.startTime = shop.sWorkTime;
         model.EndTime = shop.eWorkTime;
         model.IsAvilable = shop.isAvilable;
+        model.isShopAvailable = shop.isShopAvailable;
         model.ListServices = _context.services.Where(a => a.userId == shop.Id).ToList();
 
 

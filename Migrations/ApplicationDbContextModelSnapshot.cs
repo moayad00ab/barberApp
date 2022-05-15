@@ -137,11 +137,11 @@ namespace barber.Migrations
                     b.Property<string>("UserId")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<string>("description")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<DateTime>("expire")
                         .HasColumnType("datetime2");
+
+                    b.Property<int>("percentage")
+                        .HasColumnType("int");
 
                     b.HasKey("offerID");
 
@@ -289,8 +289,14 @@ namespace barber.Migrations
                     b.Property<bool>("isAvilable")
                         .HasColumnType("bit");
 
+                    b.Property<bool>("isShopAvailable")
+                        .HasColumnType("bit");
+
                     b.Property<string>("lName")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("numOfTotalAppoint")
+                        .HasColumnType("int");
 
                     b.Property<int>("postelCode")
                         .HasColumnType("int");

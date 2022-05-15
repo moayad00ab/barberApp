@@ -41,6 +41,8 @@ namespace barber.Migrations
                     eWorkTime = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     isAvilable = table.Column<bool>(type: "bit", nullable: false),
                     userType = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    isShopAvailable = table.Column<bool>(type: "bit", nullable: false),
+                    numOfTotalAppoint = table.Column<int>(type: "int", nullable: false),
                     UserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     NormalizedUserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     Email = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
@@ -259,7 +261,7 @@ namespace barber.Migrations
                 columns: table => new
                 {
                     offerID = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    description = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    percentage = table.Column<int>(type: "int", nullable: false),
                     expire = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UserId = table.Column<string>(type: "nvarchar(450)", nullable: true)
                 },

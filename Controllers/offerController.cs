@@ -28,20 +28,27 @@ namespace barber.Controllers;
             //check if incoming model object is valid
             if (ModelState.IsValid)
             {
-                System.Security.Claims.ClaimsPrincipal currentUser = this.User;
+                 System.Security.Claims.ClaimsPrincipal currentUser = this.User;
                 var id = _userManager.GetUserId(User); // Get user id:
+               // var offer = await _context
+                if(model != null)
+                {
+                 // await _context.offers.Remove(model);  
+                }
+               
 
-                offer = new offers {description = model.description, User = await _userManager.FindByIdAsync(id)};
+                offer = new offers {percentage = model.percentage, User = await _userManager.FindByIdAsync(id)};
                 var result = _context.offers.Add(offer);
                await _context.SaveChangesAsync();  
                var servicePrice = _context.services.Where(a => a.userId == id).ToList();
-                if (Int32.Parse(model.description) > 0)
+                if (model.percentage > 0)
                 {
                     
                 
                foreach (var service in servicePrice)
                {
-                   service.price = (1-(Int32.Parse(model.description)/100))*service.price;
+                   var temp = (1.0-((float)model.percentage/100.0));
+                   service.price = service.price * (float)temp;
                         _context.services.Update(service);
                                        await _context.SaveChangesAsync();  
 
@@ -49,13 +56,23 @@ namespace barber.Controllers;
                }
                 }
             }
-            return View("Index", _context.offers.ToList());
+            return RedirectToAction("Index","files", _context.offers.ToList());
         }
          [HttpPost]
         public async Task<IActionResult> Delete(string id)
         {
             var offer = await _context.offers.FindAsync(id);
-           
+           var servicePrice = _context.services.Where(a => a.userId == id).ToList();
+
+                foreach (var service in servicePrice)
+               {
+                   var temp = ((float)offer.percentage/100.0);
+                   service.price = service.price + (float)temp;
+                     _context.services.Update(service);
+                      await _context.SaveChangesAsync();  
+
+
+               }
             _context.offers.Remove(offer);
             await _context.SaveChangesAsync();
             return View("Index", _context.offers.ToList());

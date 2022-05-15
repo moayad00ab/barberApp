@@ -232,6 +232,7 @@ public class accountController : Controller
             editView.shopName = user.shopName;
             editView.isAvilable = user.isAvilable;
             editView.barbersShop = user.barbersShop;
+         //   editView.isShopAvailable = user.isShopAvailable;
             return View(editView);
         }
 
@@ -360,12 +361,21 @@ public class accountController : Controller
 }
 [HttpGet]
 public async Task<IActionResult> insights([Optional] string search){
+
      System.Security.Claims.ClaimsPrincipal currentUser = this.User;
             var id = _userManager.GetUserId(User); // Get user id:
             var shop =await _userManager.FindByIdAsync(id);
             var query = _context.appointment.Where(a => a.shopId == shop.Id);
+
+                List<users> Barbers = _userManager.Users.Where(a => a.barbersShop == shop.Id).ToList(); 
+                          ViewBag.AppoinForBarbers = new int [Barbers.Count];    
+
+                for(int i = 0; i < Barbers.Count; i++){
+                   ViewBag.AppoinForBarbers [i] = _context.appointment.Where(a => a.barberId == Barbers[i].Id).Count();
+                }
+
     List<appointment> numOfAppointments = _context.appointment.Where(a => a.shopId == shop.Id).ToList();    
-                ViewData["Search"] = search;
+           ViewData["Search"] = search;
             if (!String.IsNullOrEmpty(search))
             {
                 query = query.Where(x => x.Date.Contains(search) && x.shopId == shop.Id);
@@ -373,15 +383,42 @@ public async Task<IActionResult> insights([Optional] string search){
             
     ViewBag.DynamicPricing = DynamicPricing(shop);
  List<appointment> numOfAppointments30 = _context.appointment.Where(a => a.shopId == shop.Id).ToList();
-
+ List<appointment> TotalIncome = _context.appointment.Where(a => a.shopId == shop.Id).ToList();
+ 
+    ViewBag.TIncome =(float) 0;
+    ViewBag.last30Income = (float) 0;
     int count = 0;
-    DateOnly currentDate = DateOnly.FromDateTime(DateTime.Now);
+    var currentDate = DateOnly.FromDateTime(DateTime.Now);
+    ViewBag.last30 = new List<appointment>();
+
 
     for (int i = 0; i < 30; i++)
     {
-      // last30DaysAppoint =  Convert.ToDateTime(currentDate).Subtract(TimeSpan.FromDays(1)).ToString("yyyy-mm-dd").ToString();
-       
+      ViewBag.last30  = _context.appointment.Where(a => a.Date == currentDate.ToString() && a.shopId == shop.Id).ToList(); // Last 30 appointments
+       // if (ViewBag.last30 != null)
+      //  {
+       //            ViewBag.last30Income =ViewBag.last30Income + ViewBag.last30[i].totalPrice; // calculating last 30 days income
+
+        //}
+        
+     ViewBag.last30Appoint  = ViewBag.last30Appoint + _context.appointment.Where(a => a.Date == (currentDate.AddDays(0)).ToString() && a.shopId == shop.Id).ToList().Count(); // Last 30 appointments
+
+       currentDate = currentDate.AddDays(-1);
     }
+
+
+foreach (var price in numOfAppointments)
+{
+    ViewBag.TIncome = (float) ViewBag.TIncome + price.totalPrice; // calculating the total income
+}
+
+
+foreach (var barber in Barbers)
+{
+
+}
+ 
+
 
     ViewBag.appointNum = numOfAppointments.Count.ToString();
     return View(await query.AsNoTracking().ToListAsync());
@@ -413,6 +450,41 @@ public string DynamicPricing(users shop)
                }
 
             return null;
+        }
+
+             [HttpPost]
+        public async Task<ActionResult> isShopAvailable()
+        {
+
+           System.Security.Claims.ClaimsPrincipal currentUser = this.User;
+            var id = _userManager.GetUserId(User); // Get user id:
+            var shop =await _userManager.FindByIdAsync(id);
+
+            if (!shop.isShopAvailable)
+            {
+              shop.isShopAvailable = true;
+
+            }else
+            {
+              shop.isShopAvailable = false;
+
+            }
+              await _userManager.UpdateAsync(shop);
+           return RedirectToAction("Index", "files");
+        }
+
+             [HttpPost]
+        public async Task<ActionResult> isAvailable(string id)
+        {
+
+            var appointment = await _context.appointment.FindAsync(id);
+            var barber = await _userManager.FindByIdAsync(appointment.barberId);
+            barber.numOfTotalAppoint = barber.numOfTotalAppoint +1;
+              await _userManager.UpdateAsync(barber);
+            appointment.appointApprove = true;
+            _context.Update(appointment);
+           await _context.SaveChangesAsync();
+           return RedirectToAction("Index", "files");
         }
 }
 

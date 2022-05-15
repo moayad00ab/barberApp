@@ -135,7 +135,11 @@ namespace barber.Controllers
      [HttpPost]
         public async Task<ActionResult> approve(string id)
         {
+
             var appointment = await _context.appointment.FindAsync(id);
+            var barber = await _userManager.FindByIdAsync(appointment.barberId);
+            barber.numOfTotalAppoint = barber.numOfTotalAppoint +1;
+              await _userManager.UpdateAsync(barber);
             appointment.appointApprove = true;
             _context.Update(appointment);
            await _context.SaveChangesAsync();

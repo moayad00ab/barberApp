@@ -5,11 +5,39 @@
 @section css{
 
 }
+<h1>@Model.ShopName</h1>
+
+@if ((User.IsInRole("BarberShop") && ViewBag.myProfile) || (Model.ShopName == null && ViewBag.myProfile == false)){
+
+@if (Model.isShopAvailable || User.IsInRole("Customer"))
+{
+    
+
+  <h2 class="text-success">Shop is open</h2>
+@if(User.IsInRole("BarberShop") && ViewBag.myProfile){
+    <form asp-action="isShopAvailable" asp-controller="account" >
+        <input type="submit" value="Close shop" class="btn btn-outline-danger" />
+        </form>
+}
+}else
+{
+
+ <h2 class="text-danger">Shop is closed</h2>
+
+@if(User.IsInRole("BarberShop") && ViewBag.myProfile){
+    <form asp-action="isShopAvailable" asp-controller="account" >
+        <input type="submit" value="open shop" class="btn btn-outline-success" />
+        </form>
+}
+}
+}
+
 
 @if (ViewBag.myProfile)
 {
     <h1>@User.Identity.Name</h1>
 }
+
 
 @if ((User.IsInRole("Barber") && ViewBag.myProfile)|| (Model.ShopName == null && ViewBag.myProfile == false))
 {
@@ -25,7 +53,7 @@
         
     //  </div>
 
-    @if(Model.IsAvilable || @Model.ShopName == null){
+    @if(Model.IsAvilable && User.IsInRole("Customer")|| Model.IsAvilable){
           <h2 class="text-success">available</h2>
       }else
       {
@@ -35,7 +63,7 @@
 }
 
 
-<h1>@Model.ShopName</h1>
+
 
   
 @if (@Model.ShopName != null)
@@ -143,7 +171,7 @@
            <tr class="table-active">
       <td>@services.name</td>
       <td>@services.description</td>
-      <td>@services.price.00 SAR</td>
+      <td>@services.price SAR</td>
       <td>@services.time min</td>
       <td> 
           @if(User.IsInRole("BarberShop"))

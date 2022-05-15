@@ -23,22 +23,24 @@
     <input asp-for="barber" class="form-control" id="readOnlyInput" type="text" readonly="" />
   </fieldset>
 </div>
+
+<legend class="mt-4">What do you want to do?</legend>
             
             @for (var i = 0; i <Model.services.Count; i++)
             {
               
             
             <div class="form-check">
-                   <input asp-for="services[i].price" class="form-control"/>
-                   <input asp-for="services[i].name" class="form-control"/>
-                   <input asp-for="services[i].time" class="form-control"/>
+                   <input asp-for="services[i].price" class="form-control" type="hidden"/>
+                   <input asp-for="services[i].name" class="form-control" type="hidden"/>
+                   <input asp-for="services[i].time" class="form-control" type="hidden"/>
 
-               @Html.CheckBoxFor(model => Model.services[i].isChecked,true) @Model.services[i].name
+               @Html.CheckBoxFor(model => Model.services[i].isChecked,true)  <span>Service: @Model.services[i].name,</span>  <span>Price: @Model.services[i].price SAR,</span> <span>Duration: @Model.services[i].time min</span> 
             </div>
             }
 
 
-            <legend class="mt-4">What do you want to do?</legend>
+            
 
              <div class="form-group">
                 <label asp-for="stime" class="control-label">Appointment time</label>

@@ -15,6 +15,7 @@ namespace barber.ViewModels
 
         public string ShopName { get; set; }
 
+        public bool isShopAvailable { get; set; }
         public string startTime { get; set; }
         public string EndTime { get; set; }
         public List<users> Barbers { get; set; }
