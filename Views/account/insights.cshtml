@@ -41,6 +41,15 @@
     <h4 class="card-title">@ViewBag.last30Income SAR</h4>
   </div>
 </div>
+@for (int i = 0; i < ViewBag.barberName.Length; i++) 
+{
+<div class="card border-primary mb-3" style="max-width: 20rem;">
+  <div class="card-header">Name: @ViewBag.barberName[i]</div>
+  <div class="card-body">
+    <h4 class="card-title">Number of appointments: @ViewBag.AppoinForBarbers[i]</h4>
+  </div>
+</div>
+}
   <form method="get" asp-controller="account" asp-action="insights">
     <br />
     <div class="input-group mb-3"></div>

@@ -12,7 +12,7 @@ using barber.Data;
 namespace barber.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220515115419_modelsMigration")]
+    [Migration("20220515200350_modelsMigration")]
     partial class modelsMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -166,6 +166,9 @@ namespace barber.Migrations
 
                     b.Property<string>("name")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<float>("offerPrice")
+                        .HasColumnType("real");
 
                     b.Property<float>("price")
                         .HasColumnType("real");

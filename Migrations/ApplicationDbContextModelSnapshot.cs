@@ -165,6 +165,9 @@ namespace barber.Migrations
                     b.Property<string>("name")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<float>("offerPrice")
+                        .HasColumnType("real");
+
                     b.Property<float>("price")
                         .HasColumnType("real");
 

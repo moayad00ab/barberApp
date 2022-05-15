@@ -10,10 +10,10 @@ namespace barber.ViewModels
     {
 
 
-        [Required]
+        [Required(ErrorMessage = "Please enter your username")]
         public string UserName { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Please enter your password")]
         [DataType(DataType.Password)]
         public string Password { get; set; }
 
@@ -23,5 +23,3 @@ namespace barber.ViewModels
 
 
 }
-
-

@@ -14,7 +14,6 @@ public class CreateAppointmentViewModel
     [Display(Name = "Barber: ")]
     public string barber { get; set; }
     [Display(Name = "Date")]
-    [Required(ErrorMessage = "please choose date")]
     [BindProperty, DisplayFormat(DataFormatString = "{yyyy-MM-dd}", ApplyFormatInEditMode = true)]
     public DateOnly Date { get; set; }
     [Display(Name = "Customer")]

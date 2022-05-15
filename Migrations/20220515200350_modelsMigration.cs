@@ -71,6 +71,7 @@ namespace barber.Migrations
                     name = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     description = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     price = table.Column<float>(type: "real", nullable: false),
+                    offerPrice = table.Column<float>(type: "real", nullable: false),
                     userId = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     time = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     isChecked = table.Column<bool>(type: "bit", nullable: false)

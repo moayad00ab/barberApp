@@ -1,5 +1,5 @@
 {
-  "FilePath": "/Users/abdullahaldosri/Desktop/barberApp 2 2/barber.csproj",
+  "FilePath": "/home/moayad/Desktop/barber/barber.csproj",
   "Configuration": {
     "ConfigurationName": "MVC-3.0",
     "LanguageVersion": "6.0",
@@ -16298,143 +16298,148 @@
   "RootNamespace": "barber",
   "Documents": [
     {
-      "FilePath": "/Users/abdullahaldosri/Desktop/barberApp 2 2/Views/Shared/_ValidationScriptsPartial.cshtml",
-      "TargetPath": "Views\\Shared\\_ValidationScriptsPartial.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "/Users/abdullahaldosri/Desktop/barberApp 2 2/Views/account/listUsers.cshtml",
-      "TargetPath": "Views\\account\\listUsers.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "/Users/abdullahaldosri/Desktop/barberApp 2 2/Views/account/Shops.cshtml",
-      "TargetPath": "Views\\account\\Shops.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "/Users/abdullahaldosri/Desktop/barberApp 2 2/Views/appointment/Index.cshtml",
-      "TargetPath": "Views\\appointment\\Index.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "/Users/abdullahaldosri/Desktop/barberApp 2 2/Views/account/login.cshtml",
-      "TargetPath": "Views\\account\\login.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "/Users/abdullahaldosri/Desktop/barberApp 2 2/Views/service/Index.cshtml",
-      "TargetPath": "Views\\service\\Index.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "/Users/abdullahaldosri/Desktop/barberApp 2 2/Views/offer/Index.cshtml",
-      "TargetPath": "Views\\offer\\Index.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "/Users/abdullahaldosri/Desktop/barberApp 2 2/Views/Roles/EditRole.cshtml",
+      "FilePath": "/home/moayad/Desktop/barber/Views/Roles/EditRole.cshtml",
       "TargetPath": "Views\\Roles\\EditRole.cshtml",
       "FileKind": "mvc"
     },
     {
-      "FilePath": "/Users/abdullahaldosri/Desktop/barberApp 2 2/Views/Home/Privacy.cshtml",
-      "TargetPath": "Views\\Home\\Privacy.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "/Users/abdullahaldosri/Desktop/barberApp 2 2/Views/files/Upload.cshtml",
-      "TargetPath": "Views\\files\\Upload.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "/Users/abdullahaldosri/Desktop/barberApp 2 2/Views/account/Register.cshtml",
-      "TargetPath": "Views\\account\\Register.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "/Users/abdullahaldosri/Desktop/barberApp 2 2/Views/appointment/create.cshtml",
-      "TargetPath": "Views\\appointment\\create.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "/Users/abdullahaldosri/Desktop/barberApp 2 2/Views/Home/Index.cshtml",
-      "TargetPath": "Views\\Home\\Index.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "/Users/abdullahaldosri/Desktop/barberApp 2 2/Views/_ViewImports.cshtml",
-      "TargetPath": "Views\\_ViewImports.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "/Users/abdullahaldosri/Desktop/barberApp 2 2/Views/Roles/ListRoles.cshtml",
-      "TargetPath": "Views\\Roles\\ListRoles.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "/Users/abdullahaldosri/Desktop/barberApp 2 2/Views/offer/create.cshtml",
-      "TargetPath": "Views\\offer\\create.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "/Users/abdullahaldosri/Desktop/barberApp 2 2/Views/account/settings.cshtml",
+      "FilePath": "/home/moayad/Desktop/barber/Views/account/settings.cshtml",
       "TargetPath": "Views\\account\\settings.cshtml",
       "FileKind": "mvc"
     },
     {
-      "FilePath": "/Users/abdullahaldosri/Desktop/barberApp 2 2/Views/Shared/_Layout.cshtml",
-      "TargetPath": "Views\\Shared\\_Layout.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "/Users/abdullahaldosri/Desktop/barberApp 2 2/Views/Shared/_LoginPartial.cshtml",
-      "TargetPath": "Views\\Shared\\_LoginPartial.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "/Users/abdullahaldosri/Desktop/barberApp 2 2/Views/account/Edit.cshtml",
-      "TargetPath": "Views\\account\\Edit.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "/Users/abdullahaldosri/Desktop/barberApp 2 2/Views/files/Index.cshtml",
-      "TargetPath": "Views\\files\\Index.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "/Users/abdullahaldosri/Desktop/barberApp 2 2/Views/account/barbers.cshtml",
-      "TargetPath": "Views\\account\\barbers.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "/Users/abdullahaldosri/Desktop/barberApp 2 2/Views/Roles/CreateRole.cshtml",
+      "FilePath": "/home/moayad/Desktop/barber/Views/Roles/CreateRole.cshtml",
       "TargetPath": "Views\\Roles\\CreateRole.cshtml",
       "FileKind": "mvc"
     },
     {
-      "FilePath": "/Users/abdullahaldosri/Desktop/barberApp 2 2/Views/Shared/Error.cshtml",
-      "TargetPath": "Views\\Shared\\Error.cshtml",
+      "FilePath": "/home/moayad/Desktop/barber/Views/Shared/_Layout.cshtml",
+      "TargetPath": "Views\\Shared\\_Layout.cshtml",
       "FileKind": "mvc"
     },
     {
-      "FilePath": "/Users/abdullahaldosri/Desktop/barberApp 2 2/Views/service/create.cshtml",
-      "TargetPath": "Views\\service\\create.cshtml",
+      "FilePath": "/home/moayad/Desktop/barber/Views/Shared/_LoginPartial.cshtml",
+      "TargetPath": "Views\\Shared\\_LoginPartial.cshtml",
       "FileKind": "mvc"
     },
     {
-      "FilePath": "/Users/abdullahaldosri/Desktop/barberApp 2 2/Views/_ViewStart.cshtml",
+      "FilePath": "/home/moayad/Desktop/barber/Views/appointment/Index.cshtml",
+      "TargetPath": "Views\\appointment\\Index.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "/home/moayad/Desktop/barber/Views/_ViewStart.cshtml",
       "TargetPath": "Views\\_ViewStart.cshtml",
       "FileKind": "mvc"
     },
     {
-      "FilePath": "/Users/abdullahaldosri/Desktop/barberApp 2 2/Areas/Identity/Pages/_ViewStart.cshtml",
+      "FilePath": "/home/moayad/Desktop/barber/Views/Home/Privacy.cshtml",
+      "TargetPath": "Views\\Home\\Privacy.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "/home/moayad/Desktop/barber/Views/service/create.cshtml",
+      "TargetPath": "Views\\service\\create.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "/home/moayad/Desktop/barber/Views/appointment/create.cshtml",
+      "TargetPath": "Views\\appointment\\create.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "/home/moayad/Desktop/barber/Views/account/Register.cshtml",
+      "TargetPath": "Views\\account\\Register.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "/home/moayad/Desktop/barber/Views/_ViewImports.cshtml",
+      "TargetPath": "Views\\_ViewImports.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "/home/moayad/Desktop/barber/Views/Roles/ListRoles.cshtml",
+      "TargetPath": "Views\\Roles\\ListRoles.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "/home/moayad/Desktop/barber/Views/offer/create.cshtml",
+      "TargetPath": "Views\\offer\\create.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "/home/moayad/Desktop/barber/Views/account/listUsers.cshtml",
+      "TargetPath": "Views\\account\\listUsers.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "/home/moayad/Desktop/barber/Views/Home/Index.cshtml",
+      "TargetPath": "Views\\Home\\Index.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "/home/moayad/Desktop/barber/Views/files/Index.cshtml",
+      "TargetPath": "Views\\files\\Index.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "/home/moayad/Desktop/barber/Views/account/Edit.cshtml",
+      "TargetPath": "Views\\account\\Edit.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "/home/moayad/Desktop/barber/Areas/Identity/Pages/_ViewStart.cshtml",
       "TargetPath": "Areas\\Identity\\Pages\\_ViewStart.cshtml",
       "FileKind": "mvc"
     },
     {
-      "FilePath": "/Users/abdullahaldosri/Desktop/barberApp 2 2/Views/account/insights.cshtml",
+      "FilePath": "/home/moayad/Desktop/barber/Views/Shared/_ValidationScriptsPartial.cshtml",
+      "TargetPath": "Views\\Shared\\_ValidationScriptsPartial.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "/home/moayad/Desktop/barber/Views/Shared/Error.cshtml",
+      "TargetPath": "Views\\Shared\\Error.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "/home/moayad/Desktop/barber/Views/account/changePassword.cshtml",
+      "TargetPath": "Views\\account\\changePassword.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "/home/moayad/Desktop/barber/Views/service/Index.cshtml",
+      "TargetPath": "Views\\service\\Index.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "/home/moayad/Desktop/barber/Views/account/insights.cshtml",
       "TargetPath": "Views\\account\\insights.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "/home/moayad/Desktop/barber/Views/account/barbers.cshtml",
+      "TargetPath": "Views\\account\\barbers.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "/home/moayad/Desktop/barber/Views/offer/Index.cshtml",
+      "TargetPath": "Views\\offer\\Index.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "/home/moayad/Desktop/barber/Views/account/login.cshtml",
+      "TargetPath": "Views\\account\\login.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "/home/moayad/Desktop/barber/Views/account/Shops.cshtml",
+      "TargetPath": "Views\\account\\Shops.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "/home/moayad/Desktop/barber/Views/files/Upload.cshtml",
+      "TargetPath": "Views\\files\\Upload.cshtml",
       "FileKind": "mvc"
     }
   ],

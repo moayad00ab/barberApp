@@ -39,8 +39,10 @@ namespace barber.Controllers;
                 service = new services {name = model.name, description = model.description, price = model.price, userId = model.userId, time = model.time};
                 var result = _context.services.Add(service);
                await _context.SaveChangesAsync();  
-            }
+            
             return RedirectToAction("Index","files", _context.services.Where(a => a.userId == model.userId).ToList());
+            }
+            return View(model);
         }
          [HttpPost]
         public async Task<IActionResult> Delete(string id)

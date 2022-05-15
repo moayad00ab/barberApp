@@ -85,8 +85,7 @@ namespace barber.Controllers
                    model.services.Remove(model.services.Find(x => x.isChecked == false)); 
                 }
             }
-            if (ModelState.IsValid)
-            {
+            
                 System.Security.Claims.ClaimsPrincipal currentUser = this.User;
                 var id = _userManager.GetUserId(User); // Get user id:
               //  var subString = new StringBuilder(model.stime);
@@ -118,8 +117,8 @@ namespace barber.Controllers
                 _context.appointment.Add(obj);
                 await _context.SaveChangesAsync();
                 return View("Index",_context.appointment.ToList());
-            }
-            return View(model);
+            
+          
         }
         public services SearchByName(string serviceName)
         {

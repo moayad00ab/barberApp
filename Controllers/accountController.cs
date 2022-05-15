@@ -58,48 +58,50 @@ public class accountController : Controller
             }
             if (model.userType == "Barber")
             {
-                 var user = new users { fName = model.fName, lName = model.lName, UserName = model.UserName, Email = model.Email, PhoneNumber = model.PhoneNumber, barbersShop = model.barbersShop};
+               var user = new users { fName = model.fName, lName = model.lName, UserName = model.UserName, Email = model.Email, PhoneNumber = model.PhoneNumber, barbersShop = model.barbersShop};
             await _userManager.CreateAsync(user, model.Password);
             await _userManager.AddToRoleAsync(user, "Barber");
+            var shop = await _userManager.FindByIdAsync(user.barbersShop);
+            var startTime = Convert.ToDateTime(shop.sWorkTime);
+            var endTime = Convert.ToDateTime(shop.eWorkTime);
+            var min = 60;
+            var timeInterval = endTime.Subtract(startTime);
+            var totalMin = Convert.ToInt32(timeInterval.TotalMinutes);
+            var noOfTotalSlots = totalMin/min;
+            if (shop.eWorkTime != null && shop.sWorkTime != null)
+            {
+            
+            
+            for (int j = 0; j < noOfTotalSlots; j++)
+            {
+                timeList obj = new timeList();
+                startTime = startTime.AddMinutes(min);
+                obj.strtime = startTime.ToString("hh:mm tt");
+                obj.barber = user;
+                _context.timeList.Add(obj);
+                await _context.SaveChangesAsync();
+            }  
+            }
             }
             if (model.userType == "BarberShop")
             {
+                if(model.shop != null){
             var user = new users { fName = model.fName, lName = model.lName, UserName = model.UserName, Email = model.Email, PhoneNumber = model.PhoneNumber, shopName = model.shop};
             await _userManager.CreateAsync(user, model.Password);
             await _userManager.AddToRoleAsync(user, "BarberShop");
+                }else{
+                    ViewBag.shop_name = "Please enter your shop name";
+                    return View(model);
+                }
             }
-            /**   if (model.shop == null && model.barbersShop != null)
-               {
-                   user.barbersShop = model.barbersShop;
-                   await _userManager.CreateAsync(user, model.Password);
-                   await _userManager.AddToRoleAsync(user, "Barber");
-               }
-               if (model.barbersShop == null && model.shop != null)
-               {
-                   user.shopName = model.shop;
-                   await _userManager.CreateAsync(user, model.Password);
-                   await _userManager.AddToRoleAsync(user, "BarberShop");
-               }
-               if (model.shop == null && model.barbersShop == null)
-               {
-                   await _userManager.CreateAsync(user, model.Password);
-                   await _userManager.AddToRoleAsync(user, "Customer");
-               }**/
-            //check if the user created succsfuly 
-
 
             // await _signInManager.SignInAsync(user, isPersistent: false);
             return RedirectToAction("Login");
 
 
 
-            //   else
-            // {
-            //   ViewBag.MsgUser = "username is already taken";
-            // return View("Register");
-            //}
+            
         }
-        //pass the model object to view,and display any validation error may happend 
         return View();
     }
     public users SearchByName(string shopName)
@@ -107,7 +109,6 @@ public class accountController : Controller
         users shop = null;
         if (!String.IsNullOrEmpty(shopName))
         {
-            //shop = __context.shop.FirstOrDefault(c => c.shop_name == shopName);
             shop = _userManager.Users.Where(e => e.shopName == shopName).FirstOrDefault();
         }
         return shop;
@@ -368,10 +369,14 @@ public async Task<IActionResult> insights([Optional] string search){
             var query = _context.appointment.Where(a => a.shopId == shop.Id);
 
                 List<users> Barbers = _userManager.Users.Where(a => a.barbersShop == shop.Id).ToList(); 
-                          ViewBag.AppoinForBarbers = new int [Barbers.Count];    
+                ViewBag.AppoinForBarbers = new int [Barbers.Count];    
+                ViewBag.barberName = new string [Barbers.Count];
+                ViewBag.TotalIbarbers = new float [Barbers.Count];
 
                 for(int i = 0; i < Barbers.Count; i++){
                    ViewBag.AppoinForBarbers [i] = _context.appointment.Where(a => a.barberId == Barbers[i].Id).Count();
+                   ViewBag.barberName[i] = Barbers[i].fName + " " + Barbers[i].lName;
+
                 }
 
     List<appointment> numOfAppointments = _context.appointment.Where(a => a.shopId == shop.Id).ToList();    
@@ -409,7 +414,10 @@ public async Task<IActionResult> insights([Optional] string search){
 
 foreach (var price in numOfAppointments)
 {
+    
     ViewBag.TIncome = (float) ViewBag.TIncome + price.totalPrice; // calculating the total income
+       // ViewBag.TotalIbarbers[count] = ViewBag.TotalIbarbers[count] + _context.appointment.Where(a => a.barberId == Barbers[count].Id); 
+//count++;
 }
 
 
@@ -486,6 +494,46 @@ public string DynamicPricing(users shop)
            await _context.SaveChangesAsync();
            return RedirectToAction("Index", "files");
         }
+        [HttpPost]
+public async Task<IActionResult> ChangePassword(ChangePasswordViewModel model)
+{
+    if (ModelState.IsValid)
+    {
+        var user = await _userManager.GetUserAsync(User);
+        if (user == null)
+        {
+            return RedirectToAction("Login");
+        }
+
+        // ChangePasswordAsync changes the user password
+        var result = await _userManager.ChangePasswordAsync(user,
+            model.CurrentPassword, model.NewPassword);
+
+        // The new password did not meet the complexity rules or
+        // the current password is incorrect. Add these errors to
+        // the ModelState and rerender ChangePassword view
+        if (!result.Succeeded)
+        {
+            foreach (var error in result.Errors)
+            {
+                ModelState.AddModelError(string.Empty, error.Description);
+            }
+            return View();
+        }
+
+        // Upon successfully changing the password refresh sign-in cookie
+        await _signInManager.RefreshSignInAsync(user);
+        return View("ChangePasswordConfirmation");
+    }
+
+    return View(model);
+}
+[HttpGet]
+public IActionResult ChangePassword()
+{
+    
+    return View();
+}
 }
 
 
