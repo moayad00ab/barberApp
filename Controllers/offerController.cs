@@ -30,27 +30,50 @@ namespace barber.Controllers;
             {
                  System.Security.Claims.ClaimsPrincipal currentUser = this.User;
                 var id = _userManager.GetUserId(User); // Get user id:
-               // var offer = await _context
-                if(model != null)
-                {
-                 // await _context.offers.Remove(model);  
-                }
-               
-
+                var oldOffer =  _context.offers.Where(a => a.offerID != null).FirstOrDefault();
                 offer = new offers {percentage = model.percentage, User = await _userManager.FindByIdAsync(id)};
+                
+
+                var servicePrice = _context.services.Where(a => a.userId == id).ToList();
+                if(oldOffer != null)
+                {
+
+                     
+
+                foreach (var service in servicePrice)
+               {
+
+                      service.offerPrice = 0;
+                     _context.services.Update(service);
+                      await _context.SaveChangesAsync();  
+
+
+               }
+                   _context.offers.Remove(oldOffer);  
+                   await _context.SaveChangesAsync();  
+
+
+                }
+              
+
+                
                 var result = _context.offers.Add(offer);
                await _context.SaveChangesAsync();  
-               var servicePrice = _context.services.Where(a => a.userId == id).ToList();
                 if (model.percentage > 0)
                 {
                     
                 
                foreach (var service in servicePrice)
                {
+                   service.offerPrice = service.price;
                    var temp = (1.0-((float)model.percentage/100.0));
-                   service.price = service.price * (float)temp;
+                   service.offerPrice = service.price * (float)temp;
+                   if (service.offerPrice < 0)
+                   {
+                       service.offerPrice = 0;
+                   }
                         _context.services.Update(service);
-                                       await _context.SaveChangesAsync();  
+                         await _context.SaveChangesAsync();  
 
 
                }
@@ -58,7 +81,7 @@ namespace barber.Controllers;
             }
             return RedirectToAction("Index","files", _context.offers.ToList());
         }
-         [HttpPost]
+       [HttpPost]
         public async Task<IActionResult> Delete(string id)
         {
             var offer = await _context.offers.FindAsync(id);
@@ -66,8 +89,7 @@ namespace barber.Controllers;
 
                 foreach (var service in servicePrice)
                {
-                   var temp = ((float)offer.percentage/100.0);
-                   service.price = service.price + (float)temp;
+                   service.offerPrice = 0;
                      _context.services.Update(service);
                       await _context.SaveChangesAsync();  
 
@@ -75,7 +97,7 @@ namespace barber.Controllers;
                }
             _context.offers.Remove(offer);
             await _context.SaveChangesAsync();
-            return View("Index", _context.offers.ToList());
+            return RedirectToAction("Index","files", _context.offers.ToList());
         }
             [HttpGet]
  public IActionResult index()

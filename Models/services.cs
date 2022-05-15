@@ -16,6 +16,8 @@ namespace barber.Models;
         public string description { get; set; }
         [Display(Name = "Price:")]
         public float price { get; set; }
+       public float offerPrice { get; set; }
+
         public string userId { get; set; }
         public string time { get; set; }
         List<services> listServices { get; set; }
