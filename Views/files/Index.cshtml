@@ -7,7 +7,7 @@
 }
 <h1>@Model.ShopName</h1>
 
-@if ((User.IsInRole("BarberShop") && ViewBag.myProfile) || (Model.ShopName == null && ViewBag.myProfile == false)){
+@if ((User.IsInRole("BarberShop") && ViewBag.myProfile) || (Model.ShopName != null && ViewBag.myProfile == false)){
 
 @if (Model.isShopAvailable || User.IsInRole("Customer"))
 {
@@ -95,10 +95,7 @@
                  <a asp-action="create" asp-controller="service">
             <input type="submit" value="Add service" class="btn btn-outline-dark" />
         </a>
-                <a asp-action="Index" asp-controller="service">
-            <input type="submit" value="Edit service" class="btn btn-outline-dark" />
-        </a>
-
+               
 
          
          <a asp-action="create" asp-controller="offer">
@@ -179,6 +176,8 @@
       {
       <td>@services.offerPrice SAR</td>
 
+      }else{
+          <td>no discount yet</td>
       }
       <td>@services.time min</td>
       <td> 
@@ -188,7 +187,6 @@
             <input type="submit" name="Delete" value="Delete" onclick="return confirm('Are you sure you want to Delete @services.name service?')" class="btn btn-danger"/>
         </form>
         <br />
-        <a asp-action="Edit" asp-controller="service" asp-route-id="@services.Id" class="btn btn-primary">Edit</a>
           }
     </td>
     </tr>

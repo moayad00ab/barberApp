@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "N91b6YPvOzfInGtLMECC6RGQNkt4zA/ksnn0ckidhUE=",
+  "Hash": "1fkDgMCREpzs7ncAWam6zHbfw9M9yrNQO2K5wkHOynM=",
   "Source": "barber",
   "BasePath": "_content/barber",
   "Mode": "Default",
@@ -2227,6 +2227,23 @@
       "OriginalItemSpec": "wwwroot/lib/jquery/LICENSE.txt"
     },
     {
+      "Identity": "/home/moayad/Desktop/barber/wwwroot/Uploads/16ed0d15-a9a4-4e34-97f6-6dc970cf0865_index.jpeg",
+      "SourceId": "barber",
+      "SourceType": "Discovered",
+      "ContentRoot": "/home/moayad/Desktop/barber/wwwroot/",
+      "BasePath": "_content/barber",
+      "RelativePath": "Uploads/16ed0d15-a9a4-4e34-97f6-6dc970cf0865_index.jpeg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/Uploads/16ed0d15-a9a4-4e34-97f6-6dc970cf0865_index.jpeg"
+    },
+    {
       "Identity": "/home/moayad/Desktop/barber/wwwroot/Uploads/2300b440-932c-42ec-a811-fdcf96b43767_Screenshot from 2022-02-28 22-36-29.png",
       "SourceId": "barber",
       "SourceType": "Discovered",
@@ -2276,6 +2293,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot/Uploads/430d1b60-9f56-4347-9038-c674161023a7_Class.drawio.png"
+    },
+    {
+      "Identity": "/home/moayad/Desktop/barber/wwwroot/Uploads/6cfbad1c-0115-48d1-aca5-7e57e85b8e53_istockphoto-134829721-170667a.png",
+      "SourceId": "barber",
+      "SourceType": "Discovered",
+      "ContentRoot": "/home/moayad/Desktop/barber/wwwroot/",
+      "BasePath": "_content/barber",
+      "RelativePath": "Uploads/6cfbad1c-0115-48d1-aca5-7e57e85b8e53_istockphoto-134829721-170667a.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/Uploads/6cfbad1c-0115-48d1-aca5-7e57e85b8e53_istockphoto-134829721-170667a.png"
     },
     {
       "Identity": "/home/moayad/Desktop/barber/wwwroot/Uploads/6ef0a17b-c0f9-4519-9e4f-c468c202ef66_scissors.png",
@@ -2361,6 +2395,40 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot/Uploads/c9f1e072-b3db-4adb-9fdd-25c6ee5c048f_Screenshot from 2022-02-28 22-36-29.png"
+    },
+    {
+      "Identity": "/home/moayad/Desktop/barber/wwwroot/Uploads/ca5bdad0-d336-4464-bc29-046a728108a5_Best_men_s_hairstyles_for_a_clean_shaven_face_-_xbigwesx_large.png",
+      "SourceId": "barber",
+      "SourceType": "Discovered",
+      "ContentRoot": "/home/moayad/Desktop/barber/wwwroot/",
+      "BasePath": "_content/barber",
+      "RelativePath": "Uploads/ca5bdad0-d336-4464-bc29-046a728108a5_Best_men_s_hairstyles_for_a_clean_shaven_face_-_xbigwesx_large.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/Uploads/ca5bdad0-d336-4464-bc29-046a728108a5_Best_men_s_hairstyles_for_a_clean_shaven_face_-_xbigwesx_large.png"
+    },
+    {
+      "Identity": "/home/moayad/Desktop/barber/wwwroot/Uploads/e5ca63f3-bcf5-4bb7-8eeb-c3fa27bc6a92_Barbershop-in-riyadh.png",
+      "SourceId": "barber",
+      "SourceType": "Discovered",
+      "ContentRoot": "/home/moayad/Desktop/barber/wwwroot/",
+      "BasePath": "_content/barber",
+      "RelativePath": "Uploads/e5ca63f3-bcf5-4bb7-8eeb-c3fa27bc6a92_Barbershop-in-riyadh.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/Uploads/e5ca63f3-bcf5-4bb7-8eeb-c3fa27bc6a92_Barbershop-in-riyadh.png"
     },
     {
       "Identity": "/home/moayad/Desktop/barber/wwwroot/Uploads/ea7bfa3e-fc71-40e0-a5fb-5959c6436edb_barberShopSeq.drawio.png",
